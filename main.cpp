@@ -14,7 +14,7 @@ int main(int cntArguments, char** args) {
     printf("aaa");
     cout << "hello";
 
-    cout <<"world";
+    cout <<"world jdiowioxdjiojawioj";
     int cokolwerer;
     scanf("%d", &cokolwerer);
 
