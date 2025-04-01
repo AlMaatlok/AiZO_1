@@ -12,7 +12,7 @@ string generateFilename();
 
 int main(int cntArguments, char** args) {
     printf("aaa");
-    cout << "hello";
+    cout << "nice";
 
 
     /*const string fileName = R"(C:\Users\HP\CLionProjects\proba\test.txt)";
