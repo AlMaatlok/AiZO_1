@@ -14,10 +14,6 @@ int main(int cntArguments, char** args) {
     printf("aaa");
     cout << "hello";
 
-    cout <<"world jdiowioxdjiojawioj";
-    int cokolwerer;
-    scanf("%d", &cokolwerer);
-
 
     /*const string fileName = R"(C:\Users\HP\CLionProjects\proba\test.txt)";
 
