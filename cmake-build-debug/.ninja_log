@@ -1,0 +1,11 @@
+# ninja log v6
+8	2321	7652363281108286	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+9	438	7652364672624798	build.ninja	67fae95ca9c45221
+83	214	7652364674852916	CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj	5d7a9255b6a513aa
+76	223	7652364674782921	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
+89	236	7652364674902925	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+95	237	7652364674972927	CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj	4fd1660100279169
+215	299	7652364676163023	CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj	e0de01671e4dd626
+64	1155	7652364674663014	CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj	d6f62942340d48ba
+70	2385	7652364674713046	CMakeFiles/ahhh.dir/utils/Timer.cpp.obj	47f7035d3930566d
+2385	2576	7652364697863378	ahhh.exe	1273a8cba96e0a62
