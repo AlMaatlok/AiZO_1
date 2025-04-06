@@ -1,16 +1,17 @@
-//
-// Created by HP on 28.03.2025.
-//
-
 #ifndef INSERTIONSORT_H
 #define INSERTIONSORT_H
+#include "Sort.h"
 
 
 
-class InsertionSort {
-
+template <typename T>
+class InsertionSort: public Sort<T>{
+public:
+    InsertionSort();
+    T* sort(T* data, int size);
+    void measure_sorting(int no_times, T* data, int size);
+    void measure_sorting(int no_times, int size);
 };
-
 
 
 #endif //INSERTIONSORT_H
