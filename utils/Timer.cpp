@@ -1,5 +1,8 @@
 #include "Timer.h"
+#include <iostream>
+
 using namespace std;
+
 
 Timer::Timer() { reset(); }
 
@@ -16,5 +19,6 @@ void Timer::stop() {
 }
 
 int Timer::result() {
-    return static_cast<int>(duration_cast<milliseconds>(end_time - start_time).count());
+    auto duration = std::chrono::duration_cast<milliseconds>(end_time - start_time).count();
+    return static_cast<int>(duration);;
 }

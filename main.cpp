@@ -1,8 +1,10 @@
 #include <chrono>
 #include <iostream>
+#include <fstream>
 
 #include "utils/FileHandler.h"
 #include "utils/NumberGenerator.h"
+#include "utils/Timer.h"
 
 using namespace std;
 using namespace chrono;
@@ -11,8 +13,67 @@ template <typename T>
 string generateFilename();
 
 int main(int cntArguments, char** args) {
-    printf("aaa");
-    cout << "nice";
+
+    if (cntArguments < 6) {
+        cout << "FILE TEST MODE: << endl << "
+                "Usage:" << endl <<
+                "./YourProject --file <algorithm> <type> <inputFile> [outputFile]" << endl <<
+                "<algorithm> Sorting algorithm to use (e.g., 0 - Bubble, 1 - Merge, ...)." << endl <<
+                "<type> Data type to load (e.g., 0 - int, 1 - float)." << endl <<
+                "<inputFile> Input file containing the data to be sorted." << endl <<
+                "[outputFile] If provided, the sorted values will be saved to this file" << endl
+                    << endl <<
+                "BENCHMARK MODE:" << endl <<
+                "Usage:" << endl <<
+                "./YourProject --test <algorithm> <type> <size> <outputFile>" << endl <<
+                "<algorithm> Sorting algorithm to use (e.g., 0 - Bubble, 1 - Merge, ...)." << endl <<
+                "<type> Data type to generate (e.g., 0 - int, 1 - float)." << endl <<
+                "<size> Number of elements to generate (instance size)." << endl <<
+                "<outputFile> File where the benchmark results should be saved.";
+    }
+    /*Timer time;
+    constexpr int count2 = 12;
+    double* data = nullptr;
+
+    ofstream plik("wyniki.csv");
+    plik << "time\n";
+
+    NumberGenerator<double> number_generator;
+
+    //timer.start();
+    for (int i = 0; i < 12; i++) {
+        timer.start();
+        // memory alocation for each value
+        double* current_data = new double;
+        *current_data = number_generator.generate();
+        std::cout << *current_data << std::endl;
+
+
+        for (int j = 0; j < 1000; j++) {
+            *current_data = *current_data / count2;
+            *current_data *= 4;
+            cout << *current_data << endl;
+        }
+
+
+        if (data == nullptr) {
+            data = current_data;
+        }
+
+        delete current_data;
+        timer.stop();
+        int result = timer.result();
+        plik << result << "\n";
+    }*/
+    /*timer.stop();
+    int time = timer.result();
+    std::cout << time << std::endl;
+
+    plik << time << "\n";#1#
+    string filename = generateFilename<double>();
+    FileHandler<double>::writeData(filename, count2, data);
+
+    delete[] data; */
 
 
     /*const string fileName = R"(C:\Users\HP\CLionProjects\proba\test.txt)";
@@ -29,36 +90,9 @@ int main(int cntArguments, char** args) {
         cout << intData[i] << endl;
     }*/
 
-    NumberGenerator<double> number_generator;
-    constexpr int count2 = 12;
-    cout << count2 << endl;
-    const auto data = static_cast<double*>(malloc(sizeof(double) * count2));
-    for (int i = 0; i < count2; i++) {
-        data[i]=number_generator.generate();
-        cout << data[i] << endl;
-    }
-    const string filename = generateFilename<double>();
-    FileHandler<double>::writeData(filename, count2, data);
 
     //FileHandler<int>::freeMemory(intData);
-    /*if (argc < 5) {
-        cout << "FILE TEST MODE: << endl << "
-                "Usage:" << endl <<
-                "./YourProject --file <algorithm> <type> <inputFile> [outputFile]" << endl <<
-                "<algorithm> Sorting algorithm to use (e.g., 0 - Bubble, 1 - Merge, ...)." << endl <<
-                "<type> Data type to load (e.g., 0 - int, 1 - float)." << endl <<
-                "<inputFile> Input file containing the data to be sorted." << endl <<
-                "[outputFile] If provided, the sorted values will be saved to this file" << endl <<
-                "BENCHMARK MODE:" << endl <<
-                "Usage:" << endl <<
-                "./YourProject --test <algorithm> <type> <size> <outputFile>" << endl <<
-                "<algorithm> Sorting algorithm to use (e.g., 0 - Bubble, 1 - Merge, ...)." << endl <<
-                "<type> Data type to generate (e.g., 0 - int, 1 - float)." << endl <<
-                "<size> Number of elements to generate (instance size)." << endl <<
-                "<outputFile> File where the benchmark results should be saved.";
 
-    }*/
-    free(data);
     return 0;
 }
 template<typename T>         //function to generate name of a file based on the current date
