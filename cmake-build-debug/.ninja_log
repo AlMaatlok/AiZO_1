@@ -92,3 +92,7 @@
 2210	2376	7656712523112696	ahhh.exe	1273a8cba96e0a62
 11	2297	7656713313106253	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
 2298	2462	7656713335987904	ahhh.exe	1273a8cba96e0a62
+34	154	7656744318490404	CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj	e0de01671e4dd626
+27	156	7656744318420234	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
+17	5512	7656744318320393	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+5512	6022	7656744373278466	ahhh.exe	1273a8cba96e0a62

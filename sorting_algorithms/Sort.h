@@ -1,22 +1,20 @@
 #ifndef SORT_H
 #define SORT_H
+#include <string>
 
-
+using namespace std;
+using namespace pmr;
 
 template <typename T>
 class Sort {
 
 public:
-    Sort();
     Sort(T* data, int size);
-    bool is_sorted(T* data, int size, bool asc);
-    static T*  generate_random_array(int size);
-    static T* generate_sorted_array(int size, float percentage_of_sorting, bool asc);
-    T* sort(T* data, int size);
-    void measure_sorting_from_file(T* data, int size);
-    void measure_sorting_test(int iterations, int size);
-    static void print_data(T* data, int size);
-
+    bool is_sorted(T* data, int size);
+    static T* sort_array_for_test2(T* data, int size, float percentage_of_sorting, bool ascending);
+    void sorting_from_file(T* data, int size);
+    void sorting_test(int iterations, int size);
+    char* generate_time_results_filename(char** sorting);
 
 protected:
     T* not_sorted_data;
