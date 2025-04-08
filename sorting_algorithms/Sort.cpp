@@ -48,8 +48,7 @@ T* Sort<T>::sort_array_for_test2(T* data, int size, float percentage_of_sorting,
 template <typename T>
 void Sort<T>::sorting_test(int iterations, int size) {
 
-    char* filename =generate_time_results_filename(())
-    ofstream
+    char* filename =generate_time_results_filename();
 
     /*double avg_duration = 0;
 

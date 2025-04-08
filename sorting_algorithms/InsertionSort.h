@@ -9,8 +9,8 @@ class InsertionSort: public Sort<T>{
 public:
     InsertionSort();
     T* sort(T* data, int size);
-    void measure_sorting(int no_times, T* data, int size);
-    void measure_sorting(int no_times, int size);
+    void sorting_file(int iterations, T* data, int size);
+    void sorting_test(int iterations, int size);
 };
 
 
