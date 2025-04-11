@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 
+#include "sorting_algorithms/HeapSort.h"
 #include "sorting_algorithms/InsertionSort.h"
 #include "utils/FileHandler.h"
 #include "utils/NumberGenerator.h"
@@ -35,7 +36,23 @@ int main(int cntArguments, char** args) {
         if (sortingType == 0) {}
 
         //Heap Sort
-        else if (sortingType == 1) {}
+        else if (sortingType == 1) {
+            if (dataType == 0) {
+                HeapSort<int> heap_sort;
+                heap_sort.sorting_file(filename);
+            }
+            else if (dataType == 1) {
+                HeapSort<float> heap_sort;
+                heap_sort.sorting_file(filename);
+            }
+            else if (dataType == 2) {
+                HeapSort<double> heap_sort;
+                heap_sort.sorting_file(filename);
+            }
+            else {
+                cout << "Invalid argument for data type" << endl;
+            }
+        }
 
         //Insrtion Sort
         else if (sortingType == 2) {
@@ -52,7 +69,7 @@ int main(int cntArguments, char** args) {
                 insertion_sort.sorting_file(filename);
             }
             else {
-                cout << "Invalid argument for   data type" << endl;
+                cout << "Invalid argument for data type" << endl;
             }
         }
 
@@ -74,7 +91,23 @@ int main(int cntArguments, char** args) {
         if (sortingType == 0) {}
 
         //Heap Sort
-        else if (sortingType == 1) {}
+        else if (sortingType == 1) {
+            if (dataType == 0) {
+                HeapSort<int> heap_sort;
+                heap_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else if (dataType == 1) {
+                HeapSort<float> heap_sort;
+                heap_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else if (dataType == 2) {
+                HeapSort<double> heap_sort;
+                heap_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else {
+                cout << "Invalid argument for data type" << endl;
+            }
+        }
 
         //Insrtion Sort
         else if (sortingType == 2) {

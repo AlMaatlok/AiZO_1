@@ -57,3 +57,7 @@
 10	2553	7660918469874309	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
 17	2728	7660918469944404	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
 2728	2942	7660918497055915	ahhh.exe	1273a8cba96e0a62
+19	2444	7660944446316290	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+12	2553	7660944446246271	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+7	2492	7660944880242490	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+2493	2695	7660944905104265	ahhh.exe	1273a8cba96e0a62
