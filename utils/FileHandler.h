@@ -7,11 +7,11 @@ using namespace std;
 template <typename T>
 class FileHandler {
 public:
-    static int numberOfValues(const string& fileName);
+    static int numberOfValues(const std::string& fileName);
 
-    static T* readData(const string& fileName);
+    static T* readData(const std::string& fileName);
 
-    static void writeData(const string& fileName, int count, const T* data);
+    static void writeData(const std::string& fileName, int count, const T* data);
 };
 
 

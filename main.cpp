@@ -1,7 +1,9 @@
 #include <chrono>
 #include <iostream>
 #include <fstream>
+#include <string>
 
+#include "sorting_algorithms/InsertionSort.h"
 #include "utils/FileHandler.h"
 #include "utils/NumberGenerator.h"
 #include "utils/Timer.h"
@@ -10,24 +12,24 @@ using namespace std;
 using namespace chrono;
 
 template <typename T>
-string generateFilename();
+std::string generateFilename();
 void helpMode();
 
 int main(int cntArguments, char** args) {
 
-    if (cntArguments < 6) {
+    if (cntArguments < 5) {
         helpMode();
         return -1;
     }
 
-    string mode = args[1];
+    std::string mode = args[1];
+    int sortingType = atoi(args[2]);
+    int dataType = atoi(args[3]);
+
     if (mode == "--file") {
         cout << "file";
+        char* filename = args[4];
 
-        int sortingType = atoi(args[2]);
-        int dataType = atoi(args[3]);
-        string filename = args[4];
-        string output = args[5];
 
         //Shell Sort
         if (sortingType == 0) {}
@@ -36,7 +38,23 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 1) {}
 
         //Insrtion Sort
-        else if (sortingType == 2) {}
+        else if (sortingType == 2) {
+            if (dataType == 0) {
+                InsertionSort<int> insertion_sort;
+                insertion_sort.sorting_file(filename);
+            }
+            else if (dataType == 1) {
+                InsertionSort<float> insertion_sort;
+                insertion_sort.sorting_file(filename);
+            }
+            else if (dataType == 2) {
+                InsertionSort<double> insertion_sort;
+                insertion_sort.sorting_file(filename);
+            }
+            else {
+                cout << "Invalid argument for   data type" << endl;
+            }
+        }
 
         //Quick Sort
         else if (sortingType == 3) {}
@@ -50,6 +68,43 @@ int main(int cntArguments, char** args) {
     }
     else if (mode == "--test") {
         cout << "test";
+        int number_of_tests = 10;
+        int number_of_data = atoi(args[4]);
+        //Shell Sort
+        if (sortingType == 0) {}
+
+        //Heap Sort
+        else if (sortingType == 1) {}
+
+        //Insrtion Sort
+        else if (sortingType == 2) {
+            if (dataType == 0) {
+                InsertionSort<int> insertion_sort;
+                insertion_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else if (dataType == 1) {
+                InsertionSort<float> insertion_sort;
+                insertion_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else if (dataType == 2) {
+                InsertionSort<double> insertion_sort;
+                insertion_sort.sorting_test(number_of_tests, number_of_data);
+            }
+            else {
+                cout << "Wrong argument for data type!" << endl;
+            }
+        }
+
+        //Quick Sort
+        else if (sortingType == 3) {}
+        else {
+            cout << "Error!" << endl <<
+                    "Argument for type of sorting must be from 0 to 3" << endl;
+            helpMode();
+
+            return -2;
+        }
+
     }
     else {
         cout << "Specify mode you would like to enter (file/test)" << endl;
@@ -120,7 +175,7 @@ int main(int cntArguments, char** args) {
     return 0;
 }
 template<typename T>         //function to generate name of a file based on the current date
-string generateFilename() {
+std::string generateFilename() {
     const auto now = system_clock::now();
     const time_t nowTime = system_clock::to_time_t(now);
 
@@ -139,19 +194,21 @@ string generateFilename() {
 void helpMode() {
     cout <<     "FILE TEST MODE:" << endl <<
                 "   Usage:" << endl <<
-                "    ./YourProject --file <algorithm> <type> <inputFile> [outputFile]" << endl <<
-                "   <algorithm> Sorting algorithm to use (e.g., 0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick)." << endl <<
+                "    ./YourProject --file <algorithm> <type> <inputFile> [pivot/gap]" << endl <<
+                "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick)." << endl <<
                 "   <type> Data type to load (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <inputFile> Input file containing the data to be sorted." << endl <<
-                "   [outputFile] If provided, the sorted values will be saved to this file" << endl <<
+                "   [pivot/gap] If provided, argument for pivot for Quick Sort (0 - first, 1 - last, 2 - middle, 3 - random)" << endl <<
+                "               or for Shell Sort argument for gap (0 - Shell, 1 - Hibbard)" << endl <<
                 endl <<
                 "BENCHMARK MODE:" << endl <<
                 "   Usage:" << endl <<
-                "    ./YourProject --test <algorithm> <type> <size> <outputFile>" << endl <<
+                "    ./YourProject --test <algorithm> <type> <size> [pivot/gap]" << endl <<
                 "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick)." << endl <<
                 "   <type> Data type to generate (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <size> Number of elements to generate (instance size)." << endl <<
-                "   <outputFile> File where the benchmark results should be saved." << endl <<
+                "   [pivot/gap] If provided, argument for pivot for Quick Sort (0 - first, 1 - last, 2 - middle, 3 - random)" << endl <<
+                "               or for Shell Sort argument for gap (0 - Shell, 1 - Hibbard)" << endl <<
                 endl <<
                 "HELP MODE:" << endl <<
                 "   Usage:" << endl <<
@@ -165,6 +222,6 @@ void helpMode() {
                 "    Sorting integers using Heap Sort from file and saving results:" << endl <<
                 "      ./YourProject --file 1 0 input.txt sorted_output.txt" << endl <<
                 endl <<
-                "    Running a benchmark with 1000 randomly generated floats using Shell Sort:" << endl <<
-                "      ./YourProject --test 0 1 1000 results.txt";
+                "    Running a benchmark with 1000 randomly generated floats using Quick Sort with pivot as a middle element:" << endl <<
+                "      ./YourProject --test 3 1 1000 results.txt 2";
 }

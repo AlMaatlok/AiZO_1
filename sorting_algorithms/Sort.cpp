@@ -13,6 +13,9 @@
 using namespace std;
 using namespace chrono;
 
+template <typename T>
+Sort<T>::Sort() {
+}
 //Function to check if data is fully sorted
 template <typename T>
 bool Sort<T>::is_sorted(T* data, int size) {
@@ -48,7 +51,7 @@ T* Sort<T>::sort_array_for_test2(T* data, int size, float percentage_of_sorting,
 template <typename T>
 void Sort<T>::sorting_test(int iterations, int size) {
 
-    char* filename =generate_time_results_filename();
+    //char* filename =generate_time_results_filename();
 
     /*double avg_duration = 0;
 
