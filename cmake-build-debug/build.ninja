@@ -97,12 +97,6 @@ build CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj: CXX_COMPILER__ahhh_un
   OBJECT_DIR = CMakeFiles\ahhh.dir
   OBJECT_FILE_DIR = CMakeFiles\ahhh.dir\sorting_algorithms
 
-build CMakeFiles/ahhh.dir/sorting_algorithms/DrunkStudent.cpp.obj: CXX_COMPILER__ahhh_unscanned_Debug C$:/Users/HP/CLionProjects/ahhh/sorting_algorithms/DrunkStudent.cpp || cmake_object_order_depends_target_ahhh
-  DEP_FILE = CMakeFiles\ahhh.dir\sorting_algorithms\DrunkStudent.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\ahhh.dir
-  OBJECT_FILE_DIR = CMakeFiles\ahhh.dir\sorting_algorithms
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ahhh
@@ -111,7 +105,7 @@ build CMakeFiles/ahhh.dir/sorting_algorithms/DrunkStudent.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the executable ahhh.exe
 
-build ahhh.exe: CXX_EXECUTABLE_LINKER__ahhh_Debug CMakeFiles/ahhh.dir/main.cpp.obj CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj CMakeFiles/ahhh.dir/utils/Timer.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/DrunkStudent.cpp.obj
+build ahhh.exe: CXX_EXECUTABLE_LINKER__ahhh_Debug CMakeFiles/ahhh.dir/main.cpp.obj CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj CMakeFiles/ahhh.dir/utils/Timer.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ahhh.dir

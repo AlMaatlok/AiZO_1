@@ -144,8 +144,6 @@ char* InsertionSort<T>::generate_filename() {
     return result;
 }
 
-
-
 template class InsertionSort<int>;
 template class InsertionSort<float>;
 template class InsertionSort<double>;

@@ -11,11 +11,11 @@ public:
     T* sort(T* data, int size);
     void sorting_file(char* filename);
     void sorting_test(int iterations, int size);
-    char* generate_time_results_filename();
-    char* generate_filename();
 
 private:
     void heapify(T* data, int size, int i);
+    char* generate_time_results_filename();
+    char* generate_filename();
 };
 
 #endif //HEAPSORT_H

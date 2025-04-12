@@ -5,6 +5,7 @@
 
 #include "sorting_algorithms/HeapSort.h"
 #include "sorting_algorithms/InsertionSort.h"
+#include "sorting_algorithms/QuickSort.h"
 #include "utils/FileHandler.h"
 #include "utils/NumberGenerator.h"
 #include "utils/Timer.h"
@@ -26,6 +27,7 @@ int main(int cntArguments, char** args) {
     std::string mode = args[1];
     int sortingType = atoi(args[2]);
     int dataType = atoi(args[3]);
+    int extraArg = atoi(args[5]);
 
     if (mode == "--file") {
         cout << "file";
@@ -74,7 +76,74 @@ int main(int cntArguments, char** args) {
         }
 
         //Quick Sort
-        else if (sortingType == 3) {}
+        else if (sortingType == 3) {
+            if (dataType == 0) {
+                if (extraArg == 0) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<int>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<int>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<int>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<int>::RANDOM);
+                }
+                else {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<int>::LAST);
+                }
+            }
+            else if (dataType == 1) {
+                if (extraArg == 0) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<float>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<float>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<float>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<float>::RANDOM);
+                }
+                else {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<float>::LAST);
+                }
+            }
+            else if (dataType == 2) {
+                if (extraArg == 0) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<double>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<double>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<double>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<double>::RANDOM);
+                }
+                else {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_file(filename, QuickSort<double>::LAST);
+                }
+            }
+        }
         else {
             cout << "Error!" << endl <<
                     "Argument for type of sorting must be from 0 to 3" << endl;
@@ -88,6 +157,7 @@ int main(int cntArguments, char** args) {
         int number_of_tests = 10;
         int number_of_data = atoi(args[4]);
         //Shell Sort
+
         if (sortingType == 0) {}
 
         //Heap Sort
@@ -129,7 +199,74 @@ int main(int cntArguments, char** args) {
         }
 
         //Quick Sort
-        else if (sortingType == 3) {}
+        else if (sortingType == 3) {
+            if (dataType == 0) {
+                if (extraArg == 0) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::RANDOM);
+                }
+                else {
+                    QuickSort<int> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::LAST);
+                }
+            }
+            else if (dataType == 1) {
+                if (extraArg == 0) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::RANDOM);
+                }
+                else {
+                    QuickSort<float> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::LAST);
+                }
+            }
+            else if (dataType == 2) {
+                if (extraArg == 0) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::FIRST);
+                }
+                else if (extraArg == 1) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::LAST);
+                }
+                else if (extraArg == 2) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::MIDDLE);
+                }
+                else if (extraArg == 3) {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::RANDOM);
+                }
+                else {
+                    QuickSort<double> quick_sort;
+                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::LAST);
+                }
+            }
+        }
         else {
             cout << "Error!" << endl <<
                     "Argument for type of sorting must be from 0 to 3" << endl;
@@ -143,87 +280,10 @@ int main(int cntArguments, char** args) {
         cout << "Specify mode you would like to enter (file/test)" << endl;
         helpMode();
     }
-    /*Timer time;
-    constexpr int count2 = 12;
-    double* data = nullptr;
 
-    ofstream plik("wyniki.csv");
-    plik << "time\n";
-
-    NumberGenerator<double> number_generator;
-
-    //timer.start();
-    for (int i = 0; i < 12; i++) {
-        timer.start();
-        // memory alocation for each value
-        double* current_data = new double;
-        *current_data = number_generator.generate();
-        std::cout << *current_data << std::endl;
-
-
-        for (int j = 0; j < 1000; j++) {
-            *current_data = *current_data / count2;
-            *current_data *= 4;
-            cout << *current_data << endl;
-        }
-
-
-        if (data == nullptr) {
-            data = current_data;
-        }
-
-        delete current_data;
-        timer.stop();
-        int result = timer.result();
-        plik << result << "\n";
-    }*/
-    /*timer.stop();
-    int time = timer.result();
-    std::cout << time << std::endl;
-
-    plik << time << "\n";#1#
-    string filename = generateFilename<double>();
-    FileHandler<double>::writeData(filename, count2, data);
-
-    delete[] data; */
-
-
-    /*const string fileName = R"(C:\Users\HP\CLionProjects\proba\test.txt)";
-
-    const int count = FileHandler<int>::numberOfValues(fileName);
-    const int* intData = FileHandler<int>::readData(fileName);
-
-    if (intData == nullptr) {
-        cout << "File is empty" << endl;
-        return 1;
-    }
-    cout << "File contains " << count << " values: " << endl;
-    for (int i = 0; i < count; i++) {
-        cout << intData[i] << endl;
-    }*/
-
-
-    //FileHandler<int>::freeMemory(intData);
 
     return 0;
 }
-template<typename T>         //function to generate name of a file based on the current date
-std::string generateFilename() {
-    const auto now = system_clock::now();
-    const time_t nowTime = system_clock::to_time_t(now);
-
-    const tm* timeInfo = localtime(&nowTime);
-    stringstream filename;
-    filename << typeid(T).name() << "-"
-                << (timeInfo->tm_year + 1900) << "-"
-                    << (timeInfo->tm_mon + 1) << "-"
-                        << (timeInfo->tm_mday) << "-"
-                            << (timeInfo->tm_hour) << "."
-                                << (timeInfo->tm_min) << ".txt";
-
-    return filename.str();
-}
-
 void helpMode() {
     cout <<     "FILE TEST MODE:" << endl <<
                 "   Usage:" << endl <<

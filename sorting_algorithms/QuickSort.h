@@ -17,15 +17,15 @@ public:
     };
 
     QuickSort();
-    T* sorted(T* data, int size, int left, int right, pivotIndex index);
-    void sort(T* data, int left, int right, pivotIndex index);
-    void sorting_file(int iterations, T* data, int size, pivotIndex index);
-    void sorting_test(int iterations, int size, pivotIndex index);
-
+    T* sort(T* data, int left, int right, pivotIndex pivot);
+    void sorting_file(char* filename, pivotIndex pivot);
+    void sorting_test(int iterations, int size, pivotIndex pivot);
 
 private:
-    int partition(T* data, int left, int right, pivotIndex index);
-    void swap(T* first, T* second);
+    int partition(T* data, int left, int right, pivotIndex pivot);
+    char* generate_time_results_filename();
+    char* generate_filename();
+    void swap(T* a, T* b);
 };
 
 

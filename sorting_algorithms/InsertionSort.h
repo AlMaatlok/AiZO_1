@@ -11,6 +11,8 @@ public:
     T* sort(T* data, int size);
     void sorting_file(char* filename);
     void sorting_test(int iterations, int size);
+
+private:
     char* generate_time_results_filename();
     char* generate_filename();
 };
