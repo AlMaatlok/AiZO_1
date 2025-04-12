@@ -35,7 +35,7 @@ T* HeapSort<T>::sort(T *data, int size) {
 
 template<typename T>
 void HeapSort<T>::sorting_test(int iterations, int size) {
-    char* time_file = generate_time_results_filename();
+    char* time_file = generate_time_results_filename(size);
     ofstream plik(time_file);
 
     for (int i = 0; i< iterations; i++) {
@@ -60,7 +60,7 @@ void HeapSort<T>::sorting_test(int iterations, int size) {
             FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
-            char* filename = generate_filename();
+            char* filename = generate_filename(size);
             file_handler.writeData(filename, size, sorted_data);
         }
         delete[] sorted_data;
@@ -72,11 +72,11 @@ void HeapSort<T>::sorting_file(char* filename) {
     Timer timer;
     Sort<T> sort;
 
-    char* time_file = generate_time_results_filename();
-    ofstream plik(time_file);
-
     int size = file_handler.numberOfValues(filename);
     T* data = file_handler.readData(filename);
+
+    char* time_file = generate_time_results_filename(size);
+    ofstream plik(time_file);
 
     timer.start();
     T* sorted_data = this->sort(data, size);
@@ -86,10 +86,10 @@ void HeapSort<T>::sorting_file(char* filename) {
         cout << "Sorting failed!" << endl;
     }
     else {
-        cout << "Posortowane";
+        cout << "Sorting successful!" << endl;
         int time_result = timer.result();
         plik << time_result << endl;
-        char* filename_sorted = generate_filename();
+        char* filename_sorted = generate_filename(size);
         file_handler.writeData(filename_sorted, size, sorted_data);
     }
 }
@@ -121,7 +121,7 @@ void HeapSort<T>::heapify(T *data, int size, int i) {
 
 
 template <typename T>
-char* HeapSort<T>::generate_time_results_filename() {
+char* HeapSort<T>::generate_time_results_filename(int size) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -130,6 +130,7 @@ char* HeapSort<T>::generate_time_results_filename() {
     stringstream filename;
     filename << "Times-HeapSort-"
              << typeid(T).name() << "-"
+             << size << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
@@ -144,7 +145,7 @@ char* HeapSort<T>::generate_time_results_filename() {
     return result;
 }
 template <typename T>
-char* HeapSort<T>::generate_filename() {
+char* HeapSort<T>::generate_filename(int size) {
     const auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -153,6 +154,7 @@ char* HeapSort<T>::generate_filename() {
     stringstream filename;
     filename << "HeapSort-"
              << typeid(T).name() << "-"
+             << size << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"

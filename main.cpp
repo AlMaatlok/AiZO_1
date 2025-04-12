@@ -202,7 +202,7 @@ int main(int cntArguments, char** args) {
     }
     else if (mode == "--test") {
         cout << "test";
-        int number_of_tests = 10;
+        int number_of_tests = 100;
         int number_of_data = atoi(args[4]);
 
         //Shell Sort
@@ -380,7 +380,9 @@ int main(int cntArguments, char** args) {
 
             return -2;
         }
-
+    }
+    else if (mode == "--help") {
+        helpMode();
     }
     else {
         cout << "Specify mode you would like to enter (file/test)" << endl;

@@ -22,7 +22,7 @@ T* ShellSort<T>::sort(T* data, int size, gap givenGap) {
 
     // Wybór odpowiedniego gapu
     if (givenGap == SHELL) {
-        gaps = new int[size]; // Dynamiczna alokacja dla gapów
+        gaps = new int[size]; // maksymalnie size/2, więc tyle wystarczy
         gapCount = 0;
         int gapValue = size / 2;
         while (gapValue > 0) {
@@ -30,11 +30,12 @@ T* ShellSort<T>::sort(T* data, int size, gap givenGap) {
             gapValue /= 2;
         }
     } else if (givenGap == HIBBARD) {
-        gaps = new int[size]; // Dynamiczna alokacja dla gapów
+        gaps = new int[size]; // bezpieczny zapas
         gapCount = 0;
         int k = 1;
-        while (pow(2, k) - 1 < size) {
-            gaps[gapCount++] = pow(2, k) - 1;
+        int gapValue;
+        while ((gapValue = (1 << k) - 1) < size) { // użycie bitowego przesunięcia zamiast pow()
+            gaps[gapCount++] = gapValue;
             k++;
         }
     } else {
@@ -62,7 +63,7 @@ T* ShellSort<T>::sort(T* data, int size, gap givenGap) {
 
 template <typename T>
 void ShellSort<T>::sorting_test(int iterations, int size, gap givenGap) {
-    char* time_file = generate_time_results_filename(givenGap);
+    char* time_file = generate_time_results_filename(givenGap, size);
     std::ofstream plik(time_file);
 
     for (int i = 0; i < iterations; i++) {
@@ -88,7 +89,7 @@ void ShellSort<T>::sorting_test(int iterations, int size, gap givenGap) {
             std::cout << "Sorting successful!" << std::endl;
             int time_result = timer.result();
             plik << time_result << std::endl;
-            char* filename = generate_filename(givenGap);
+            char* filename = generate_filename(givenGap, size);
             file_handler.writeData(filename, size, sorted_data);
         }
 
@@ -104,11 +105,11 @@ void ShellSort<T>::sorting_file(char* filename, gap givenGap) {
     Timer timer;
     Sort<T> sort;
 
-    char* time_file = generate_time_results_filename(givenGap);
-    std::ofstream plik(time_file);
-
     int size = file_handler.numberOfValues(filename);
-    T* data = file_handler.readData(filename); // Dynamiczna alokacja danych z pliku
+    T* data = file_handler.readData(filename);
+
+    char* time_file = generate_time_results_filename(givenGap, size);
+    std::ofstream plik(time_file);
 
     timer.start();
     T* sorted_data = this->sort(data, size, givenGap);
@@ -116,21 +117,21 @@ void ShellSort<T>::sorting_file(char* filename, gap givenGap) {
 
     bool is_sorted = sort.is_sorted(sorted_data, size);
     if (!is_sorted) {
-        std::cout << "Sorting failed!" << std::endl;
+        cout << "Sorting failed!" << std::endl;
     } else {
-        std::cout << "Sorting successful!" << std::endl;
+        cout << "Sorting successful!" << std::endl;
         int time_result = timer.result();
         plik << time_result << std::endl;
-        char* filename_sorted = generate_filename(givenGap);
+        char* filename_sorted = generate_filename(givenGap, size);
         file_handler.writeData(filename_sorted, size, sorted_data);
     }
 
-    delete[] data; // Zwolnienie pamięci po danych
-    delete[] time_file; // Zwolnienie pamięci po pliku
+    delete[] data;
+    delete[] time_file;
 }
 
 template <typename T>
-char* ShellSort<T>::generate_filename(gap givenGap) {
+char* ShellSort<T>::generate_filename(gap givenGap, int size) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -147,6 +148,7 @@ char* ShellSort<T>::generate_filename(gap givenGap) {
         filename << "UNKNOWN-";
 
     filename << typeid(T).name() << "-"
+             << size << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
@@ -162,7 +164,7 @@ char* ShellSort<T>::generate_filename(gap givenGap) {
 }
 
 template <typename T>
-char* ShellSort<T>::generate_time_results_filename(gap givenGap) {
+char* ShellSort<T>::generate_time_results_filename(gap givenGap, int size) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -179,6 +181,7 @@ char* ShellSort<T>::generate_time_results_filename(gap givenGap) {
         filename << "UNKNOWN-";
 
     filename << typeid(T).name() << "-"
+             << size << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"

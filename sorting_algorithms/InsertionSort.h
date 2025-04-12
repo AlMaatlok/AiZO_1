@@ -13,8 +13,8 @@ public:
     void sorting_test(int iterations, int size);
 
 private:
-    char* generate_time_results_filename();
-    char* generate_filename();
+    char* generate_time_results_filename(int size);
+    char* generate_filename(int size);
 };
 
 

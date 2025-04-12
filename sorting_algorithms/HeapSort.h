@@ -14,8 +14,8 @@ public:
 
 private:
     void heapify(T* data, int size, int i);
-    char* generate_time_results_filename();
-    char* generate_filename();
+    char* generate_time_results_filename(int size);
+    char* generate_filename(int size);
 };
 
 #endif //HEAPSORT_H

@@ -18,8 +18,8 @@ public:
     void sorting_file(char* filename, gap givenGap);
     void sorting_test(int iterations, int size, gap givenGap);
 private:
-    char* generate_time_results_filename(gap givenGap);
-    char* generate_filename(gap givenGap);
+    char* generate_time_results_filename(gap givenGap, int size);
+    char* generate_filename(gap givenGap, int size);
 };
 
 
