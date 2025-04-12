@@ -17,49 +17,41 @@ ShellSort<T>::ShellSort() {}
 
 template<typename T>
 T* ShellSort<T>::sort(T* data, int size, gap givenGap) {
-    int* gaps;
-    int gapCount = 0;
-
-    // Wybór odpowiedniego gapu
     if (givenGap == SHELL) {
-        gaps = new int[size]; // maksymalnie size/2, więc tyle wystarczy
-        gapCount = 0;
-        int gapValue = size / 2;
-        while (gapValue > 0) {
-            gaps[gapCount++] = gapValue;
-            gapValue /= 2;
+        for (int gap = size / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < size; i++) {
+                T temp = data[i];
+                int j;
+                for (j = i; j >= gap && data[j - gap] > temp; j -= gap)
+                    data[j] = data[j - gap];
+                data[j] = temp;
+            }
         }
     } else if (givenGap == HIBBARD) {
-        gaps = new int[size]; // bezpieczny zapas
-        gapCount = 0;
-        int k = 1;
-        int gapValue;
-        while ((gapValue = (1 << k) - 1) < size) { // użycie bitowego przesunięcia zamiast pow()
-            gaps[gapCount++] = gapValue;
-            k++;
-        }
-    } else {
-        cout << "Unsupported gap sequence!" << std::endl;
-        return nullptr; // Zwróć null jeśli nie obsługiwany gap
-    }
+        int x = 1;
+        int gap = (1 << x) - 1;
 
-    // Algorytm sortowania Shella
-    for (int i = 0; i < gapCount; ++i) {
-        int gap = gaps[i];
-        for (int j = gap; j < size; ++j) {
-            T temp = data[j];
-            int k = j;
-            while (k >= gap && data[k - gap] > temp) {
-                data[k] = data[k - gap];
-                k -= gap;
+        while (gap < size)
+            gap = (1 << ++x) - 1;
+
+        --x;
+
+        while (x > 0) {
+            gap = (1 << x) - 1;
+            for (int i = gap; i < size; i++) {
+                T temp = data[i];
+                int j;
+                for (j = i; j >= gap && data[j - gap] > temp; j -= gap)
+                    data[j] = data[j - gap];
+                data[j] = temp;
             }
-            data[k] = temp;
+            --x;
         }
     }
 
-    delete[] gaps; // Zwolnienie dynamicznej pamięci
     return data;
 }
+
 
 template <typename T>
 void ShellSort<T>::sorting_test(int iterations, int size, gap givenGap) {

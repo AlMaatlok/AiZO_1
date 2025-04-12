@@ -20,6 +20,7 @@ public:
 private:
     char* generate_time_results_filename(gap givenGap, int size);
     char* generate_filename(gap givenGap, int size);
+
 };
 
 
