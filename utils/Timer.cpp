@@ -20,5 +20,5 @@ void Timer::stop() {
 
 int Timer::result() {
     auto duration = std::chrono::duration_cast<milliseconds>(end_time - start_time).count();
-    return static_cast<int>(duration);;
+    return static_cast<int>(duration);
 }

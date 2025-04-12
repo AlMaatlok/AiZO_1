@@ -6,15 +6,12 @@
 #include "sorting_algorithms/HeapSort.h"
 #include "sorting_algorithms/InsertionSort.h"
 #include "sorting_algorithms/QuickSort.h"
-#include "utils/FileHandler.h"
+#include "sorting_algorithms/ShellSort.h"
 #include "utils/NumberGenerator.h"
-#include "utils/Timer.h"
 
 using namespace std;
 using namespace chrono;
 
-template <typename T>
-std::string generateFilename();
 void helpMode();
 
 int main(int cntArguments, char** args) {
@@ -35,7 +32,57 @@ int main(int cntArguments, char** args) {
 
 
         //Shell Sort
-        if (sortingType == 0) {}
+        if (sortingType == 0) {
+            if (dataType == 0) {
+                if (extraArg == 0) {
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<int>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<int>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<int>::SHELL);
+                }
+            }
+            else if (dataType == 1) {
+                if (extraArg == 0) {
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<float>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<float>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<float>::SHELL);
+                }
+            }
+            else if (dataType == 2) {
+                if (extraArg == 0) {
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<double>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<double>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_file(filename, ShellSort<double>::SHELL);
+                }
+            }
+            else {
+                cout << "Invalid argument for data type" << endl;
+                helpMode();
+            }
+        }
 
         //Heap Sort
         else if (sortingType == 1) {
@@ -72,6 +119,7 @@ int main(int cntArguments, char** args) {
             }
             else {
                 cout << "Invalid argument for data type" << endl;
+                helpMode();
             }
         }
 
@@ -156,9 +204,60 @@ int main(int cntArguments, char** args) {
         cout << "test";
         int number_of_tests = 10;
         int number_of_data = atoi(args[4]);
-        //Shell Sort
 
-        if (sortingType == 0) {}
+        //Shell Sort
+        if (sortingType == 0) {
+            if (dataType == 0) {
+                if (extraArg == 0) {
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<int> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::SHELL);
+                }
+            }
+            else if (dataType == 1) {
+                if (extraArg == 0) {
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<float> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::SHELL);
+                }
+            }
+            else if (dataType == 2) {
+                if (extraArg == 0) {
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::SHELL);
+                }
+                else if (extraArg == 1) {
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::HIBBARD);
+                }
+                else {
+                    cout << "Using default: SHELL gap" << endl;
+                    ShellSort<double> shell_sort;
+                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::SHELL);
+                }
+            }
+            else {
+                cout << "Invalid argument for data type" << endl;
+                helpMode();
+            }
+
+        }
 
         //Heap Sort
         else if (sortingType == 1) {
@@ -175,7 +274,7 @@ int main(int cntArguments, char** args) {
                 heap_sort.sorting_test(number_of_tests, number_of_data);
             }
             else {
-                cout << "Invalid argument for data type" << endl;
+                cout << "Wrong argument for data type!" << endl;
             }
         }
 
@@ -218,6 +317,7 @@ int main(int cntArguments, char** args) {
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::RANDOM);
                 }
                 else {
+                    cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<int> quick_sort;
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::LAST);
                 }
@@ -240,6 +340,7 @@ int main(int cntArguments, char** args) {
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::RANDOM);
                 }
                 else {
+                    cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<float> quick_sort;
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::LAST);
                 }
@@ -262,11 +363,16 @@ int main(int cntArguments, char** args) {
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::RANDOM);
                 }
                 else {
+                    cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<double> quick_sort;
                     quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::LAST);
                 }
             }
+            else {
+                cout << "Wrong argument for data type!" << endl;
+            }
         }
+
         else {
             cout << "Error!" << endl <<
                     "Argument for type of sorting must be from 0 to 3" << endl;

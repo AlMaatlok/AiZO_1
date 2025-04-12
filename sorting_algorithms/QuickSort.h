@@ -23,8 +23,8 @@ public:
 
 private:
     int partition(T* data, int left, int right, pivotIndex pivot);
-    char* generate_time_results_filename();
-    char* generate_filename();
+    char* generate_time_results_filename(pivotIndex pivot);
+    char* generate_filename(pivotIndex pivot);
     void swap(T* a, T* b);
 };
 

@@ -14,10 +14,12 @@ public:
     };
 
     ShellSort();
-    void sort(T* data, int size, gap givenGap);
-    T* sorted(T* data, int size, gap givenGap);
-    void sorting_file(int iterations, T* data, int size, gap givenGap);
+    T* sort(T* data, int size, gap givenGap);
+    void sorting_file(char* filename, gap givenGap);
     void sorting_test(int iterations, int size, gap givenGap);
+private:
+    char* generate_time_results_filename(gap givenGap);
+    char* generate_filename(gap givenGap);
 };
 
 

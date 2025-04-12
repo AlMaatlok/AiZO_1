@@ -4,7 +4,6 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
-#include <cstring>
 #include <ctime>
 #include <sstream>
 #include <random>
@@ -31,11 +30,10 @@ T* QuickSort<T>::sort(T* data, int left, int right, pivotIndex pivotInd) {
 }
 template <typename T>
 void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
-    char* time_file = generate_time_results_filename();
+    char* time_file = generate_time_results_filename(pivot);
     ofstream plik(time_file);
 
     for (int i = 0; i < iterations; i++) {
-        FileHandler<T> file_handler;
         NumberGenerator<T> number_generator;
         Timer timer;
         Sort<T> sort;
@@ -54,9 +52,10 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
         if (!is_sorted) {
             cout << "Sorting failed!" << endl;
         } else {
+            FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
-            char* filename = generate_filename();
+            char* filename = generate_filename(pivot);
             file_handler.writeData(filename, size, sorted_data);
         }
 
@@ -72,7 +71,7 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
     Timer timer;
     Sort<T> sort;
 
-    char* time_file = generate_time_results_filename();
+    char* time_file = generate_time_results_filename(pivot);
     ofstream plik(time_file);
 
     int size = file_handler.numberOfValues(filename);
@@ -89,7 +88,7 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
         cout << "Posortowane";
         int time_result = timer.result();
         plik << time_result << endl;
-        char* filename_sorted = generate_filename();
+        char* filename_sorted = generate_filename(pivot);
         file_handler.writeData(filename_sorted, size, sorted_data);
     }
     delete[] data;
@@ -98,7 +97,7 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
 template<typename T>
 int QuickSort<T>::partition(T *data, int left, int right, pivotIndex pivot) {
     int pivotIndex;
-    srand(time(NULL));
+    srand(time(nullptr));
     if (pivot == FIRST) {
         pivotIndex = left;
     } else if (pivot == LAST) {
@@ -133,15 +132,27 @@ void QuickSort<T>::swap(T *a, T *b) {
 }
 
 template <typename T>
-char* QuickSort<T>::generate_filename() {
-    const auto now = system_clock::now();
+char* QuickSort<T>::generate_filename(pivotIndex pivot) {
+    auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
     tm* timeInfo = localtime(&timeNow);
 
-    stringstream filename;
-    filename << "QuickSort-"
-             << typeid(T).name() << "-"
+    std::stringstream filename;
+    filename << "QuickSort-";
+
+    if (pivot == FIRST)
+        filename << "FIRST-";
+    else if (pivot == LAST)
+        filename << "LAST-";
+    else if (pivot == MIDDLE)
+        filename << "MIDDLE-";
+    else if (pivot == RANDOM)
+        filename << "RANDOM-";
+    else
+        filename << "UNKNOWN-";
+
+    filename << typeid(T).name() << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
@@ -156,15 +167,27 @@ char* QuickSort<T>::generate_filename() {
     return result;
 }
 template <typename T>
-char* QuickSort<T>::generate_time_results_filename() {
-    const auto now = system_clock::now();
+char* QuickSort<T>::generate_time_results_filename(pivotIndex pivot) {
+    auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
     tm* timeInfo = localtime(&timeNow);
 
-    stringstream filename;
-    filename << "Times-QuickSort-"
-             << typeid(T).name() << "-"
+    std::stringstream filename;
+    filename << "Times-QuickSort-";
+
+    if (pivot == FIRST)
+        filename << "FIRST-";
+    else if (pivot == LAST)
+        filename << "LAST-";
+    else if (pivot == MIDDLE)
+        filename << "MIDDLE-";
+    else if (pivot == RANDOM)
+        filename << "RANDOM-";
+    else
+        filename << "UNKNOWN-";
+
+    filename << typeid(T).name() << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"

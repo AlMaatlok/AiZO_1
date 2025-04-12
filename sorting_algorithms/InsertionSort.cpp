@@ -17,11 +17,10 @@ template<typename T>
 T* InsertionSort<T>::sort(T *data, int size) {
 
     T temp;
-    int j;
     for(int i = 1; i < size; i++)
     {
         temp = data[i];
-        j = i-1;
+        int j = i - 1;
 
         while(j >= 0 && data[j] > temp)
         {
@@ -39,15 +38,14 @@ void InsertionSort<T>::sorting_test(int iterations, int size) {
     ofstream plik(time_file);
 
     for (int i = 0; i< iterations; i++) {
-        FileHandler<T> file_handler;
         NumberGenerator<T> number_generator;
         Timer timer;
         Sort<T> sort;
 
         cout << "test nr " << i << endl;
         T* data = new T[size];
-        for(int i = 0; i < size; i++) {
-            data[i] = number_generator.generate();
+        for(int j = 0; j < size; j++) {
+            data[j] = number_generator.generate();
         }
         timer.start();
         T* sorted_data = this->sort(data, size);
@@ -58,6 +56,7 @@ void InsertionSort<T>::sorting_test(int iterations, int size) {
             cout << "Sorting failed!" << endl;
         }
         else {
+            FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
             char* filename = generate_filename();
