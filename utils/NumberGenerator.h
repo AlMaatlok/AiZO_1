@@ -15,7 +15,6 @@ private:
     mt19937 gen;        //random number generator
 };
 
-// Implementation of template
 template <typename T>
 NumberGenerator<T>::NumberGenerator() {
     random_device rd;

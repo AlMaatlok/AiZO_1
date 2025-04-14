@@ -12,3 +12,15 @@
 9	2626	7661933901988830	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
 16	2749	7661933902058813	CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj	4fd1660100279169
 2749	2991	7661933929381024	ahhh.exe	1273a8cba96e0a62
+55	5608	7663390860515696	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+5610	6650	7663390916055089	ahhh.exe	1273a8cba96e0a62
+54	4817	7663393099294403	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
+4819	5279	7663393146938384	ahhh.exe	1273a8cba96e0a62
+19	5115	7663397412198024	CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj	5d7a9255b6a513aa
+5116	5572	7663397463165150	ahhh.exe	1273a8cba96e0a62
+36	7514	7663399639866189	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+91	7836	7663399640424989	CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj	4fd1660100279169
+66	7899	7663399640167528	CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj	5d7a9255b6a513aa
+78	7963	7663399640291800	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+54	7981	7663399640053912	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
+7981	8902	7663399719317315	ahhh.exe	1273a8cba96e0a62

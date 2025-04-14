@@ -43,7 +43,7 @@ void HeapSort<T>::sorting_test(int iterations, int size) {
         Timer timer;
         Sort<T> sort;
 
-        cout << "test nr " << i << endl;
+        cout << "Test nr " << i << endl;
         T* data = new T[size];
         for(int j = 0; j < size; j++) {
             data[j] = number_generator.generate();
@@ -60,11 +60,14 @@ void HeapSort<T>::sorting_test(int iterations, int size) {
             FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
+
             char* filename = generate_filename(size);
             file_handler.writeData(filename, size, sorted_data);
+            delete[] filename;
         }
-        delete[] sorted_data;
+        delete[] data;
     }
+    delete[] time_file;
 }
 template<typename T>
 void HeapSort<T>::sorting_file(char* filename) {
@@ -89,9 +92,13 @@ void HeapSort<T>::sorting_file(char* filename) {
         cout << "Sorting successful!" << endl;
         int time_result = timer.result();
         plik << time_result << endl;
+
         char* filename_sorted = generate_filename(size);
         file_handler.writeData(filename_sorted, size, sorted_data);
+        delete[] filename_sorted;
     }
+    delete[] data;
+    delete[] time_file;
 }
 
 

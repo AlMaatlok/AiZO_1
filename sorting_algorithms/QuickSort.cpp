@@ -17,6 +17,7 @@ using namespace chrono;
 
 template<typename T>
 QuickSort<T>::QuickSort() {
+    srand(time(nullptr));
 }
 
 template <typename T>
@@ -32,6 +33,7 @@ template <typename T>
 void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
     char* time_file = generate_time_results_filename(pivot, size);
     ofstream plik(time_file);
+    delete[] time_file;
 
     for (int i = 0; i < iterations; i++) {
         NumberGenerator<T> number_generator;
@@ -45,10 +47,10 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
         }
 
         timer.start();
-        T* sorted_data = this->sort(data, 0, size - 1, pivot);
+        this->sort(data, 0, size - 1, pivot);
         timer.stop();
 
-        bool is_sorted = sort.is_sorted(sorted_data, size);
+        bool is_sorted = sort.is_sorted(data, size);
         if (!is_sorted) {
             cout << "Sorting failed!" << endl;
         } else {
@@ -57,13 +59,12 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
             int time_result = timer.result();
             plik << time_result << endl;
             char* filename = generate_filename(pivot, size);
-            file_handler.writeData(filename, size, sorted_data);
+            file_handler.writeData(filename, size,data);
+            delete[] filename;
         }
 
         delete[] data;
     }
-
-    delete[] time_file;
 }
 
 template <typename T>
@@ -77,11 +78,12 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
 
     char* time_file = generate_time_results_filename(pivot, size);
     ofstream plik(time_file);
+    delete[] time_file;
 
     timer.start();
-    T* sorted_data = this->sort(data, 0, size - 1, pivot);
+    this->sort(data, 0, size - 1, pivot);
     timer.stop();
-    bool is_sorted = sort.is_sorted(sorted_data, size);
+    bool is_sorted = sort.is_sorted(data, size);
     if (!is_sorted) {
         cout << "Sorting failed!" << endl;
     }
@@ -89,16 +91,18 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
         cout << "Sorting";
         int time_result = timer.result();
         plik << time_result << endl;
+
         char* filename_sorted = generate_filename(pivot, size);
-        file_handler.writeData(filename_sorted, size, sorted_data);
+        file_handler.writeData(filename_sorted, size, data);
+        delete[] filename_sorted;
     }
     delete[] data;
-    delete[] time_file;
 }
+
 template<typename T>
 int QuickSort<T>::partition(T *data, int left, int right, pivotIndex pivot) {
     int pivotIndex;
-    srand(time(nullptr));
+
     if (pivot == FIRST) {
         pivotIndex = left;
     } else if (pivot == LAST) {
@@ -123,8 +127,8 @@ int QuickSort<T>::partition(T *data, int left, int right, pivotIndex pivot) {
     }
     swap(&data[i + 1], &data[right]);
     return i + 1;
-
 }
+
 template<typename T>
 void QuickSort<T>::swap(T *a, T *b) {
     T temp = *a;
@@ -139,7 +143,7 @@ char* QuickSort<T>::generate_filename(pivotIndex pivot, int size) {
 
     tm* timeInfo = localtime(&timeNow);
 
-    std::stringstream filename;
+    stringstream filename;
     filename << "QuickSort-";
 
     if (pivot == FIRST)
