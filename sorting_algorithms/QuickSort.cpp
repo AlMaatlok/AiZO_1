@@ -30,8 +30,8 @@ T* QuickSort<T>::sort(T* data, int left, int right, pivotIndex pivotInd) {
     return data;
 }
 template <typename T>
-void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
-    char* time_file = generate_time_results_filename(pivot, size);
+void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot, int distribution) {
+    char* time_file = generate_time_results_filename(pivot, size, distribution);
     ofstream plik(time_file);
     delete[] time_file;
 
@@ -46,6 +46,8 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
             data[j] = number_generator.generate();
         }
 
+        sort.sort_array_for_test2(data, size, distribution);
+
         timer.start();
         this->sort(data, 0, size - 1, pivot);
         timer.stop();
@@ -58,8 +60,8 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
             FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
-            char* filename = generate_filename(pivot, size);
-            file_handler.writeData(filename, size,data);
+            char* filename = generate_filename(pivot, size, distribution);
+            file_handler.writeData(filename, size, data);
             delete[] filename;
         }
 
@@ -68,7 +70,7 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot) {
 }
 
 template <typename T>
-void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
+void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot, int distribution) {
     FileHandler<T> file_handler;
     Timer timer;
     Sort<T> sort;
@@ -76,9 +78,11 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
     int size = file_handler.numberOfValues(filename);
     T* data = file_handler.readData(filename);
 
-    char* time_file = generate_time_results_filename(pivot, size);
+    char* time_file = generate_time_results_filename(pivot, size, distribution);
     ofstream plik(time_file);
     delete[] time_file;
+
+    sort.sort_array_for_test2(data, size, distribution);
 
     timer.start();
     this->sort(data, 0, size - 1, pivot);
@@ -92,7 +96,7 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot) {
         int time_result = timer.result();
         plik << time_result << endl;
 
-        char* filename_sorted = generate_filename(pivot, size);
+        char* filename_sorted = generate_filename(pivot, size, distribution);
         file_handler.writeData(filename_sorted, size, data);
         delete[] filename_sorted;
     }
@@ -137,7 +141,7 @@ void QuickSort<T>::swap(T *a, T *b) {
 }
 
 template <typename T>
-char* QuickSort<T>::generate_filename(pivotIndex pivot, int size) {
+char* QuickSort<T>::generate_filename(pivotIndex pivot, int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -159,6 +163,7 @@ char* QuickSort<T>::generate_filename(pivotIndex pivot, int size) {
 
     filename << typeid(T).name() << "-"
              << size << "-"
+             << distribution << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
@@ -173,7 +178,7 @@ char* QuickSort<T>::generate_filename(pivotIndex pivot, int size) {
     return result;
 }
 template <typename T>
-char* QuickSort<T>::generate_time_results_filename(pivotIndex pivot, int size) {
+char* QuickSort<T>::generate_time_results_filename(pivotIndex pivot, int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -195,6 +200,7 @@ char* QuickSort<T>::generate_time_results_filename(pivotIndex pivot, int size) {
 
     filename << typeid(T).name() << "-"
              << size << "-"
+             << distribution << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"

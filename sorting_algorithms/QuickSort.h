@@ -18,13 +18,13 @@ public:
 
     QuickSort();
     T* sort(T* data, int left, int right, pivotIndex pivot);
-    void sorting_file(char* filename, pivotIndex pivot);
-    void sorting_test(int iterations, int size, pivotIndex pivot);
+    void sorting_file(char* filename, pivotIndex pivot, int distribution);
+    void sorting_test(int iterations, int size, pivotIndex pivot, int distribution);
 
 private:
     int partition(T* data, int left, int right, pivotIndex pivot);
-    char* generate_time_results_filename(pivotIndex pivot, int size);
-    char* generate_filename(pivotIndex pivot, int size);
+    char* generate_time_results_filename(pivotIndex pivot, int size, int distribution);
+    char* generate_filename(pivotIndex pivot, int size, int distribution);
     void swap(T* a, T* b);
 };
 

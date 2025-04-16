@@ -33,8 +33,8 @@ T* InsertionSort<T>::sort(T *data, int size) {
 }
 
 template<typename T>
-void InsertionSort<T>::sorting_test(int iterations, int size) {
-    char* time_file = generate_time_results_filename(size);
+void InsertionSort<T>::sorting_test(int iterations, int size, int distribution) {
+    char* time_file = generate_time_results_filename(size, distribution);
     ofstream plik(time_file);
 
     for (int i = 0; i< iterations; i++) {
@@ -47,6 +47,8 @@ void InsertionSort<T>::sorting_test(int iterations, int size) {
         for(int j = 0; j < size; j++) {
             data[j] = number_generator.generate();
         }
+        sort.sort_array_for_test2(data, size, distribution);
+
         timer.start();
         T* sorted_data = this->sort(data, size);
         timer.stop();
@@ -61,7 +63,7 @@ void InsertionSort<T>::sorting_test(int iterations, int size) {
             int time_result = timer.result();
             plik << time_result << endl;
 
-            char* filename = generate_filename(size);
+            char* filename = generate_filename(size, distribution);
             file_handler.writeData(filename, size, sorted_data);
             delete[] filename;
         }
@@ -71,7 +73,7 @@ void InsertionSort<T>::sorting_test(int iterations, int size) {
 }
 
 template<typename T>
-void InsertionSort<T>::sorting_file(char* filename) {
+void InsertionSort<T>::sorting_file(char* filename, int distribution) {
     FileHandler<T> file_handler;
     Timer timer;
     Sort<T> sort;
@@ -79,8 +81,10 @@ void InsertionSort<T>::sorting_file(char* filename) {
     int size = file_handler.numberOfValues(filename);
     T* data = file_handler.readData(filename);
 
-    char* time_file = generate_time_results_filename(size);
+    char* time_file = generate_time_results_filename(size, distribution);
     ofstream plik(time_file);
+
+    sort.sort_array_for_test2(data, size, distribution);
 
     timer.start();
     T* sorted_data = this->sort(data, size);
@@ -90,10 +94,10 @@ void InsertionSort<T>::sorting_file(char* filename) {
         cout << "Sorting failed!" << endl;
     }
     else {
-        cout << "Sorting succesful";
+        cout << "Sorting successful";
         int time_result = timer.result();
         plik << time_result << endl;
-        char* filename_sorted = generate_filename(size);
+        char* filename_sorted = generate_filename(size, distribution);
         file_handler.writeData(filename_sorted, size, sorted_data);
         delete[] filename_sorted;
     }
@@ -103,7 +107,7 @@ void InsertionSort<T>::sorting_file(char* filename) {
 
 
 template <typename T>
-char* InsertionSort<T>::generate_time_results_filename(int size) {
+char* InsertionSort<T>::generate_time_results_filename(int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -113,6 +117,7 @@ char* InsertionSort<T>::generate_time_results_filename(int size) {
     filename << "Times-InsertSort-"
              << typeid(T).name() << "-"
              << size << "-"
+             << distribution << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
@@ -127,7 +132,7 @@ char* InsertionSort<T>::generate_time_results_filename(int size) {
     return result;
 }
 template <typename T>
-char* InsertionSort<T>::generate_filename(int size) {
+char* InsertionSort<T>::generate_filename(int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -137,6 +142,7 @@ char* InsertionSort<T>::generate_filename(int size) {
     filename << "InsertSort-"
              << typeid(T).name() << "-"
              << size << "-"
+             << distribution << "-"
              << (timeInfo->tm_year + 1900) << "-"
              << (timeInfo->tm_mon + 1) << "-"
              << (timeInfo->tm_mday) << "-"
