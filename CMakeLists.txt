@@ -18,4 +18,6 @@ add_executable(ahhh main.cpp
         sorting_algorithms/ShellSort.h
         sorting_algorithms/Sort.cpp
         sorting_algorithms/Sort.h
-        utils/NumberGenerator.h)
+        utils/NumberGenerator.h
+        sorting_algorithms/DrunkStudent.cpp
+        sorting_algorithms/DrunkStudent.h)

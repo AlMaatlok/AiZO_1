@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 
+#include "sorting_algorithms/DrunkStudent.h"
 #include "sorting_algorithms/HeapSort.h"
 #include "sorting_algorithms/InsertionSort.h"
 #include "sorting_algorithms/QuickSort.h"
@@ -193,9 +194,26 @@ int main(int cntArguments, char** args) {
                 }
             }
         }
+        else if (sortingType == 4) {
+            if (dataType == 0) {
+                DrunkStudent<int> drunkStudent;
+                drunkStudent.sorting_file(filename, distribution);
+            }
+            else if (dataType == 1) {
+                DrunkStudent<float> drunkStudent;
+                drunkStudent.sorting_file(filename, distribution);
+            }
+            else if (dataType == 2) {
+                DrunkStudent<double> drunkStudent;
+                drunkStudent.sorting_file(filename, distribution);
+            }
+            else {
+                cout << "Invalid argument for data type" << endl;
+            }
+        }
         else {
             cout << "Error!" << endl <<
-                    "Argument for type of sorting must be from 0 to 3" << endl;
+                    "Argument for type of sorting must be from 0 to 4" << endl;
             helpMode();
 
             return -2;
@@ -373,7 +391,23 @@ int main(int cntArguments, char** args) {
                 cout << "Wrong argument for data type!" << endl;
             }
         }
-
+        else if (sortingType == 4) {
+            if (dataType == 0) {
+                DrunkStudent<int> drunk_student;
+                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+            }
+            else if (dataType == 1) {
+                DrunkStudent<float> drunk_student;
+                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+            }
+            else if (dataType == 2) {
+                DrunkStudent<double> drunk_student;
+                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+            }
+            else {
+                cout << "Wrong argument for data type!" << endl;
+            }
+        }
         else {
             cout << "Error!" << endl <<
                     "Argument for type of sorting must be from 0 to 3" << endl;
@@ -397,7 +431,7 @@ void helpMode() {
     cout <<     "FILE TEST MODE:" << endl <<
                 "   Usage:" << endl <<
                 "    ./YourProject --file <algorithm> <type> <inputFile> <initial distribution> [pivot/gap] " << endl <<
-                "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick)." << endl <<
+                "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick, 4 - Drunk Student)." << endl <<
                 "   <type> Data type to load (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <inputFile> Input file containing the data to be sorted." << endl <<
                 "   <initial distribution> How is the data sorted before the actual sorting (-1 - descending, 0 - random, 1 ascending, 3 - 33%, 6 - 66%)" << endl <<
@@ -407,7 +441,7 @@ void helpMode() {
                 "BENCHMARK MODE:" << endl <<
                 "   Usage:" << endl <<
                 "    ./YourProject --test <algorithm> <type> <size> <initial distribution> [pivot/gap]" << endl <<
-                "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick)." << endl <<
+                "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick, 4 - Drunk Student)." << endl <<
                 "   <type> Data type to generate (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <size> Number of elements to generate (instance size)." << endl <<
                 "   <initial distribution> How is the data sorted before the actual sorting (-1 - descending, 0 - random, 1 ascending, 3 - 33%, 6 - 66%)" << endl <<

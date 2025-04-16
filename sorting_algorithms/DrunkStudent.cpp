@@ -1,40 +1,24 @@
-#include "HeapSort.h"
+#include "DrunkStudent.h"
+#include "../utils/Timer.h"
 #include "../utils/FileHandler.h"
 #include "../utils/NumberGenerator.h"
-#include "../utils/Timer.h"
+#include "../sorting_algorithms/Sort.h"
 
 #include <chrono>
-#include <fstream>
+#include <cstdlib>
 #include <iostream>
+#include <ctime>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
 using namespace chrono;
 
 template<typename T>
-HeapSort<T>::HeapSort() {}
+DrunkStudent<T>::DrunkStudent(){};
 
 template<typename T>
-T* HeapSort<T>::sort(T *data, int size) {
-    // build max-heap
-    for (int i = size / 2 - 1; i >= 0; i--)
-        heapify(data, size, i);
-
-    // extracting element from the heap
-    for (int i = size - 1; i >= 0; i--) {
-        // moving the current root to the last element of the array.
-        T temp = data[i];
-        data[i] = data[0];
-        data[0] = temp;
-
-        // calling max heapify on the shrink heap
-        heapify(data, i, 0);
-    }
-    return data;
-}
-
-template<typename T>
-void HeapSort<T>::sorting_test(int iterations, int size, int distribution) {
+void DrunkStudent<T>::sorting_test(int iterations, int size, int distribution) {
     char* time_file = generate_time_results_filename(size, distribution);
     ofstream plik(time_file);
 
@@ -49,10 +33,10 @@ void HeapSort<T>::sorting_test(int iterations, int size, int distribution) {
             data[j] = number_generator.generate();
         }
 
-        sort. sort_array_for_test2(data, size, distribution);
+        sort.sort_array_for_test2(data, size, distribution);
 
         timer.start();
-        T* sorted_data = this->sort(data, size);
+        T* sorted_data = this->sort(data, 0, size - 1);
         timer.stop();
         bool is_sorted = sort.is_sorted(sorted_data, size);
 
@@ -60,6 +44,7 @@ void HeapSort<T>::sorting_test(int iterations, int size, int distribution) {
             cout << "Sorting failed!" << endl;
         }
         else {
+            cout << "Sorting successful!" << endl;
             FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
@@ -73,7 +58,7 @@ void HeapSort<T>::sorting_test(int iterations, int size, int distribution) {
     delete[] time_file;
 }
 template<typename T>
-void HeapSort<T>::sorting_file(char* filename, int distribution) {
+void DrunkStudent<T>::sorting_file(char* filename, int distribution) {
     FileHandler<T> file_handler;
     Timer timer;
     Sort<T> sort;
@@ -87,7 +72,7 @@ void HeapSort<T>::sorting_file(char* filename, int distribution) {
     sort.sort_array_for_test2(data, size ,distribution);
 
     timer.start();
-    T* sorted_data = this->sort(data, size);
+    T* sorted_data = this->sort(data, 0, size - 1);
     timer.stop();
     bool is_sorted = sort.is_sorted(sorted_data, size);
     if (!is_sorted) {
@@ -107,38 +92,61 @@ void HeapSort<T>::sorting_file(char* filename, int distribution) {
 }
 
 template<typename T>
-void HeapSort<T>::heapify(T *data, int size, int i) {
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
+int DrunkStudent<T>::partition(T* data, int left, int right) {
+    int pivotIndex = rand() % (right - left + 1) + left;
+    T pivot = data[pivotIndex];
+    std::swap(data[pivotIndex], data[right]);
 
-    // If the left child is larger than the root
-    if (l < size && data[l] > data[largest])
-        largest = l;
-
-    // If the right child is larger
-    if (r < size && data[r] > data[largest])
-        largest = r;
-
-    // If the root is not the largest
-    if (largest != i) {
-        swap(data[i], data[largest]);
-
-        // Heapifying the sub-tree repeatedly
-        heapify(data, size, largest);
+    int i = left - 1;
+    for (int j = left; j < right; j++) {
+        if (data[j] <= pivot) {
+            i++;
+            std::swap(data[i], data[j]);
+        }
     }
+
+    if (rand() % 3 == 0) {
+        int randomIndex1 = rand() % (right - left + 1) + left;
+        int randomIndex2 = rand() % (right - left + 1) + left;
+        std::swap(data[randomIndex1], data[randomIndex2]);
+    }
+
+    swap(&data[i + 1], &data[right]);
+    return i + 1;
+}
+
+template<typename T>
+T* DrunkStudent<T>::sort(T* data, int left, int right) {
+    if (left < right) {
+        int p = partition(data, left, right);
+
+        if (rand() % 2 == 0) {
+            sort(data, left, p - 1);
+            sort(data, p + 1, right);
+        } else {
+            sort(data, left, p - 1);
+        }
+    }
+    return data;
 }
 
 
+template<typename T>
+void DrunkStudent<T>::swap(T *a, T *b) {
+    T temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 template <typename T>
-char* HeapSort<T>::generate_time_results_filename(int size, int distribution) {
+char* DrunkStudent<T>::generate_time_results_filename(int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
     tm* timeInfo = localtime(&timeNow);
 
     stringstream filename;
-    filename << "Times-HeapSort-"
+    filename << "Times-DrunkStudent-"
              << typeid(T).name() << "-"
              << size << "-"
              << distribution << "-"
@@ -156,14 +164,14 @@ char* HeapSort<T>::generate_time_results_filename(int size, int distribution) {
     return result;
 }
 template <typename T>
-char* HeapSort<T>::generate_filename(int size, int distribution) {
+char* DrunkStudent<T>::generate_filename(int size, int distribution) {
     const auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
     tm* timeInfo = localtime(&timeNow);
 
     stringstream filename;
-    filename << "HeapSort-"
+    filename << "DrunkStudent-"
              << typeid(T).name() << "-"
              << size << "-"
              << distribution << "-"
@@ -181,7 +189,6 @@ char* HeapSort<T>::generate_filename(int size, int distribution) {
     return result;
 }
 
-template class HeapSort<int>;
-template class HeapSort<float>;
-template class HeapSort<double>;
-
+template class DrunkStudent<int>;
+template class DrunkStudent<float>;
+template class DrunkStudent<double>;
