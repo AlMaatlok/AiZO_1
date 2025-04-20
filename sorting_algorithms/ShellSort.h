@@ -19,7 +19,7 @@ public:
     void sorting_test(int iterations, int size, gap givenGap, int distribution);
 private:
     char* generate_time_results_filename(gap givenGap, int size, int distribution);
-    char* generate_filename(gap givenGap, int size, int distribution);
+    char* generate_filename(gap givenGap, int size, int distribution, int nr);
     int* generate_gaps(int size, gap givenGap, int* count);
 
 };

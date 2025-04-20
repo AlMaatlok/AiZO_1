@@ -14,7 +14,7 @@ public:
 
 private:
     char* generate_time_results_filename(int size, int distribution);
-    char* generate_filename(int size, int distribution);
+    char* generate_filename(int size, int distribution, int nr);
 };
 
 

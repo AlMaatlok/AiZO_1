@@ -453,7 +453,7 @@ void helpMode() {
                 "    ./YourProject --help" << endl <<
                 "   Displays this help message." << endl <<
                 "   Notes:" << endl <<
-                "   - The help message will also appear if no argumnets are provides." << endl <<
+                "   - The help message will also appear if no arguments are provides." << endl <<
                 "   - Ensure that either --file or --test mode id specified;" << endl <<
                 "     they are mutually exclusive." << endl <<
                 "EXAMPLE CALLS:" << endl <<

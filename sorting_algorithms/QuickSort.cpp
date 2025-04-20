@@ -60,9 +60,9 @@ void QuickSort<T>::sorting_test(int iterations, int size, pivotIndex pivot, int 
             FileHandler<T> file_handler;
             int time_result = timer.result();
             plik << time_result << endl;
-            char* filename = generate_filename(pivot, size, distribution);
-            file_handler.writeData(filename, size, data);
-            delete[] filename;
+            //char* filename = generate_filename(pivot, size, distribution, i);
+            //file_handler.writeData(filename, size, data);
+            //delete[] filename;
         }
 
         delete[] data;
@@ -96,7 +96,7 @@ void QuickSort<T>::sorting_file(char* filename, pivotIndex pivot, int distributi
         int time_result = timer.result();
         plik << time_result << endl;
 
-        char* filename_sorted = generate_filename(pivot, size, distribution);
+        char* filename_sorted = generate_filename(pivot, size, distribution, 1);
         file_handler.writeData(filename_sorted, size, data);
         delete[] filename_sorted;
     }
@@ -141,7 +141,7 @@ void QuickSort<T>::swap(T *a, T *b) {
 }
 
 template <typename T>
-char* QuickSort<T>::generate_filename(pivotIndex pivot, int size, int distribution) {
+char* QuickSort<T>::generate_filename(pivotIndex pivot, int size, int distribution, int nr) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -169,7 +169,8 @@ char* QuickSort<T>::generate_filename(pivotIndex pivot, int size, int distributi
              << (timeInfo->tm_mday) << "-"
              << (timeInfo->tm_hour) << "."
              << (timeInfo->tm_min) << "."
-             << (timeInfo->tm_sec) << ".txt";
+             << (timeInfo->tm_sec) << "-"
+             << "test-" << nr <<".txt";
 
     std::string s = filename.str();
     char* result = new char[s.length() + 1];

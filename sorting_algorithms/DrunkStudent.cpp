@@ -32,6 +32,7 @@ T* DrunkStudent<T>::sort(T* data, int size) {
 
     Sort<T> sort;
     bool isSorted = sort.is_sorted(data, size);
+
     if (!isSorted) {
         reverseArray(data, size);
     }
@@ -49,7 +50,7 @@ void DrunkStudent<T>::sorting_test(int iterations, int size, int distribution) {
         Timer timer;
         Sort<T> sort;
 
-        cout << "Test nr " << i << endl;
+        cout << "Test nr " << i + 1 << endl;
         T* data = new T[size];
         for(int j = 0; j < size; j++) {
             data[j] = number_generator.generate();
@@ -70,9 +71,9 @@ void DrunkStudent<T>::sorting_test(int iterations, int size, int distribution) {
             int time_result = timer.result();
             plik << time_result << endl;
 
-            char* filename = generate_filename(size, distribution);
-            file_handler.writeData(filename, size, sorted_data);
-            delete[] filename;
+            //char* filename = generate_filename(size, distribution, i);
+            //file_handler.writeData(filename, size, sorted_data);
+            //delete[] filename;
         }
         delete[] data;
     }
@@ -104,7 +105,7 @@ void DrunkStudent<T>::sorting_file(char* filename, int distribution) {
         cout << "Sorting successful";
         int time_result = timer.result();
         plik << time_result << endl;
-        char* filename_sorted = generate_filename(size, distribution);
+        char* filename_sorted = generate_filename(size, distribution, 1);
         file_handler.writeData(filename_sorted, size, sorted_data);
         delete[] filename_sorted;
     }
@@ -139,7 +140,7 @@ char* DrunkStudent<T>::generate_time_results_filename(int size, int distribution
     return result;
 }
 template <typename T>
-char* DrunkStudent<T>::generate_filename(int size, int distribution) {
+char* DrunkStudent<T>::generate_filename(int size, int distribution, int nr) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -155,7 +156,8 @@ char* DrunkStudent<T>::generate_filename(int size, int distribution) {
              << (timeInfo->tm_mday) << "-"
              << (timeInfo->tm_hour) << "."
              << (timeInfo->tm_min) << "."
-             << (timeInfo->tm_sec) << ".txt";
+             << (timeInfo->tm_sec) << "-"
+             << "test-" << nr << ".txt";
 
     std::string s = filename.str();
     char* result = new char[s.length() + 1];

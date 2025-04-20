@@ -65,8 +65,9 @@ void ShellSort<T>::sorting_test(int iterations, int size, gap givenGap, int dist
             std::cout << "Sorting successful!" << std::endl;
             int time_result = timer.result();
             plik << time_result << std::endl;     //writing time result into a file  .csv
-            char* filename = generate_filename(givenGap, size, distribution);    //file for sorted values
-            file_handler.writeData(filename, size, sorted_data);   //writing sorted data into a file .txt
+            //char* filename = generate_filename(givenGap, size, distribution, i);    //file for sorted values
+            //file_handler.writeData(filename, size, sorted_data);   //writing sorted data into a file .txt
+            //delete[] filename;
         }
 
         delete[] data; //freeing memory
@@ -103,7 +104,7 @@ void ShellSort<T>::sorting_file(char* filename, gap givenGap, int distribution) 
         cout << "Sorting successful!" << std::endl;
         int time_result = timer.result();
         plik << time_result << std::endl;
-        char* filename_sorted = generate_filename(givenGap, size, distribution);
+        char* filename_sorted = generate_filename(givenGap, size, distribution, 1);
         file_handler.writeData(filename_sorted, size, sorted_data);
     }
 
@@ -113,7 +114,7 @@ void ShellSort<T>::sorting_file(char* filename, gap givenGap, int distribution) 
 }
 
 template <typename T>
-char* ShellSort<T>::generate_filename(gap givenGap, int size, int distribution) {
+char* ShellSort<T>::generate_filename(gap givenGap, int size, int distribution, int nr) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -137,7 +138,8 @@ char* ShellSort<T>::generate_filename(gap givenGap, int size, int distribution) 
              << (timeInfo->tm_mday) << "-"
              << (timeInfo->tm_hour) << "."
              << (timeInfo->tm_min) << "."
-             << (timeInfo->tm_sec) << ".txt";
+             << (timeInfo->tm_sec) << "-"
+             << "test-" << nr << ".txt";
 
     std::string s = filename.str();
     char* result = new char[s.length() + 1];

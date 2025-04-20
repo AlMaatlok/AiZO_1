@@ -24,7 +24,7 @@ public:
 private:
     int partition(T* data, int left, int right, pivotIndex pivot);
     char* generate_time_results_filename(pivotIndex pivot, int size, int distribution);
-    char* generate_filename(pivotIndex pivot, int size, int distribution);
+    char* generate_filename(pivotIndex pivot, int size, int distribution, int nr);
     void swap(T* a, T* b);
 };
 
