@@ -10,8 +10,8 @@ class Sort {
 
 public:
     Sort();
-    bool is_sorted(T* data, int size);
-    T* sort_array_for_test2(T* data, int size, int argument);
+    bool isSorted(T* data, int size);
+    T* sortArrayForTest2(T* data, int size, int argument);
 };
 
 

@@ -197,15 +197,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 4) {
             if (dataType == 0) {
                 DrunkStudent<int> drunkStudent;
-                drunkStudent.sorting_file(filename, distribution);
+                drunkStudent.sortingFile(filename, distribution);
             }
             else if (dataType == 1) {
                 DrunkStudent<float> drunkStudent;
-                drunkStudent.sorting_file(filename, distribution);
+                drunkStudent.sortingFile(filename, distribution);
             }
             else if (dataType == 2) {
                 DrunkStudent<double> drunkStudent;
-                drunkStudent.sorting_file(filename, distribution);
+                drunkStudent.sortingFile(filename, distribution);
             }
             else {
                 cout << "Invalid argument for data type" << endl;
@@ -394,15 +394,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 4) {
             if (dataType == 0) {
                 DrunkStudent<int> drunk_student;
-                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+                drunk_student.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 1) {
                 DrunkStudent<float> drunk_student;
-                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+                drunk_student.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 2) {
                 DrunkStudent<double> drunk_student;
-                drunk_student.sorting_test(number_of_tests, number_of_data, distribution);
+                drunk_student.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else {
                 cout << "Wrong argument for data type!" << endl;

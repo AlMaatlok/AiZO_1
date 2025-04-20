@@ -9,30 +9,33 @@
 #include "../utils/Timer.h"
 #include "Sort.h"
 
+//constructor of DrunkStudent class
 template<typename T>
 DrunkStudent<T>::DrunkStudent() {
 }
 
+//sorting function using min-heap
 template<typename T>
 T* DrunkStudent<T>::sort(T* data, int size) {
     // build min-heap
     for (int i = size / 2 - 1; i >= 0; i--)
         heapify(data, size, i);
 
-    // extracting element from the heap
+    // extracting elements from the heap
     for (int i = size - 1; i >= 0; i--) {
         // moving the current root to the last element of the array.
         T temp = data[i];
         data[i] = data[0];
         data[0] = temp;
 
-        // calling max heapify on the shrink heap
+        // calling max heapify on the reduced heap
         heapify(data, i, 0);
     }
 
     Sort<T> sort;
-    bool isSorted = sort.is_sorted(data, size);
+    bool isSorted = sort.isSorted(data, size);
 
+    //reverse array if sorting failed
     if (!isSorted) {
         reverseArray(data, size);
     }
@@ -40,82 +43,83 @@ T* DrunkStudent<T>::sort(T* data, int size) {
     return data;
 }
 
+//function to run sorting test multiple times
 template<typename T>
-void DrunkStudent<T>::sorting_test(int iterations, int size, int distribution) {
-    char* time_file = generate_time_results_filename(size, distribution);
-    ofstream plik(time_file);
+void DrunkStudent<T>::sortingTest(int iterations, int size, int distribution) {
+    char* timeFile = generateTimeResultsFilename(size, distribution);
+    ofstream plik(timeFile);
 
     for (int i = 0; i< iterations; i++) {
-        NumberGenerator<T> number_generator;
+        NumberGenerator<T> numberGenerator;
         Timer timer;
         Sort<T> sort;
 
         cout << "Test nr " << i + 1 << endl;
         T* data = new T[size];
         for(int j = 0; j < size; j++) {
-            data[j] = number_generator.generate();
+            data[j] = numberGenerator.generate();
         }
-        sort.sort_array_for_test2(data, size, distribution);
+        sort.sortArrayForTst2(data, size, distribution);
 
         timer.start();
-        T* sorted_data = this->sort(data, size);
+        this->sort(data, size);
         timer.stop();
-        bool is_sorted = sort.is_sorted(sorted_data, size);
+        bool isSorted = sort.isSorted(data, size);
 
-        if (!is_sorted) {
+        if (!isSorted) {
             cout << "Sorting failed!" << endl;
         }
         else {
             cout << "Sorting successful!" << endl;
-            FileHandler<T> file_handler;
-            int time_result = timer.result();
-            plik << time_result << endl;
+            FileHandler<T> fileHandler;
+            int timeResult = timer.result();
+            plik << timeResult << endl;
 
-            //char* filename = generate_filename(size, distribution, i);
-            //file_handler.writeData(filename, size, sorted_data);
-            //delete[] filename;
+            char* filename = generateFilename(size, distribution, i);
+            fileHandler.writeData(filename, size, data);
+            delete[] filename;
         }
         delete[] data;
     }
-    delete[] time_file;
+    delete[] timeFile;
 }
 
 template<typename T>
-void DrunkStudent<T>::sorting_file(char* filename, int distribution) {
-    FileHandler<T> file_handler;
+void DrunkStudent<T>::sortingFile(char* filename, int distribution) {
+    FileHandler<T> fileHandler;
     Timer timer;
     Sort<T> sort;
 
-    int size = file_handler.numberOfValues(filename);
-    T* data = file_handler.readData(filename);
+    int size = fileHandler.numberOfValues(filename);
+    T* data = fileHandler.readData(filename);
 
-    char* time_file = generate_time_results_filename(size, distribution);
-    ofstream plik(time_file);
+    char* timeFile = generateTimeResultsFilename(size, distribution);
+    ofstream plik(timeFile);
 
-    sort.sort_array_for_test2(data, size, distribution);
+    sort.sortArrayForTest2(data, size, distribution);
 
     timer.start();
-    T* sorted_data = this->sort(data, size);
+    this->sort(data, size);
     timer.stop();
-    bool is_sorted = sort.is_sorted(sorted_data, size);
-    if (!is_sorted) {
+    bool isSorted = sort.isSorted(data, size);
+    if (!isSorted) {
         cout << "Sorting failed!" << endl;
     }
     else {
         cout << "Sorting successful";
-        int time_result = timer.result();
-        plik << time_result << endl;
-        char* filename_sorted = generate_filename(size, distribution, 1);
-        file_handler.writeData(filename_sorted, size, sorted_data);
-        delete[] filename_sorted;
+        int timeResult = timer.result();
+        plik << timeResult << endl;
+        char* filenameSorted = generateFilename(size, distribution, 1);
+        fileHandler.writeData(filenameSorted, size, data);
+        delete[] filenameSorted;
     }
     delete[] data;
-    delete[] time_file;
+    delete[] timeFile;
 }
 
 
 template <typename T>
-char* DrunkStudent<T>::generate_time_results_filename(int size, int distribution) {
+char* DrunkStudent<T>::generateTimeResultsFilename(int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -140,7 +144,7 @@ char* DrunkStudent<T>::generate_time_results_filename(int size, int distribution
     return result;
 }
 template <typename T>
-char* DrunkStudent<T>::generate_filename(int size, int distribution, int nr) {
+char* DrunkStudent<T>::generateFilename(int size, int distribution, int nr) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
