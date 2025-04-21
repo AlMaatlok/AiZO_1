@@ -38,46 +38,46 @@ int main(int cntArguments, char** args) {
             if (dataType == 0) {
                 if (extraArg == 0) {
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<int>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<int>::SHELL, distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<int>::HIBBARD, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<int>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<int>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<int>::SHELL, distribution);
                 }
             }
             else if (dataType == 1) {
                 if (extraArg == 0) {
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<float>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<float>::SHELL, distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<float>::HIBBARD, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<float>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<float>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<float>::SHELL, distribution);
                 }
             }
             else if (dataType == 2) {
                 if (extraArg == 0) {
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<double>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<double>::SHELL, distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<double>::HIBBARD, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<double>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_file(filename, ShellSort<double>::SHELL, distribution);
+                    shell_sort.sortingFile(filename, ShellSort<double>::SHELL, distribution);
                 }
             }
             else {
@@ -90,15 +90,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 1) {
             if (dataType == 0) {
                 HeapSort<int> heap_sort;
-                heap_sort.sorting_file(filename, distribution);
+                heap_sort.sortingFile(filename, distribution);
             }
             else if (dataType == 1) {
                 HeapSort<float> heap_sort;
-                heap_sort.sorting_file(filename, distribution);
+                heap_sort.sortingFile(filename, distribution);
             }
             else if (dataType == 2) {
                 HeapSort<double> heap_sort;
-                heap_sort.sorting_file(filename, distribution);
+                heap_sort.sortingFile(filename, distribution);
             }
             else {
                 cout << "Invalid argument for data type" << endl;
@@ -109,15 +109,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 2) {
             if (dataType == 0) {
                 InsertionSort<int> insertion_sort;
-                insertion_sort.sorting_file(filename, distribution);
+                insertion_sort.sortingFile(filename, distribution);
             }
             else if (dataType == 1) {
                 InsertionSort<float> insertion_sort;
-                insertion_sort.sorting_file(filename, distribution);
+                insertion_sort.sortingFile(filename, distribution);
             }
             else if (dataType == 2) {
                 InsertionSort<double> insertion_sort;
-                insertion_sort.sorting_file(filename, distribution);
+                insertion_sort.sortingFile(filename, distribution);
             }
             else {
                 cout << "Invalid argument for data type" << endl;
@@ -130,67 +130,67 @@ int main(int cntArguments, char** args) {
             if (dataType == 0) {
                 if (extraArg == 0) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<int>::FIRST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<int>::MIDDLE, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<int>::RANDOM, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::RANDOM, distribution);
                 }
                 else {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::LAST, distribution);
                 }
             }
             else if (dataType == 1) {
                 if (extraArg == 0) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<float>::FIRST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<float>::MIDDLE, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<float>::RANDOM, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::RANDOM, distribution);
                 }
                 else {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::LAST, distribution);
                 }
             }
             else if (dataType == 2) {
                 if (extraArg == 0) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<double>::FIRST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<double>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<double>::MIDDLE, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<double>::RANDOM, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::RANDOM, distribution);
                 }
                 else {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_file(filename, QuickSort<double>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::LAST, distribution);
                 }
             }
         }
@@ -229,46 +229,46 @@ int main(int cntArguments, char** args) {
             if (dataType == 0) {
                 if (extraArg == 0) {
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::SHELL, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<int>::SHELL, distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::HIBBARD, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<int>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<int> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<int>::SHELL, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<int>::SHELL, distribution);
                 }
             }
             else if (dataType == 1) {
                 if (extraArg == 0) {
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::SHELL, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<float>::SHELL, distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::HIBBARD, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<float>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<float> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<float>::SHELL, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<float>::SHELL, distribution);
                 }
             }
             else if (dataType == 2) {
                 if (extraArg == 0) {
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::SHELL,distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<double>::SHELL,distribution);
                 }
                 else if (extraArg == 1) {
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::HIBBARD, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<double>::HIBBARD, distribution);
                 }
                 else {
                     cout << "Using default: SHELL gap" << endl;
                     ShellSort<double> shell_sort;
-                    shell_sort.sorting_test(number_of_tests, number_of_data, ShellSort<double>::SHELL, distribution);
+                    shell_sort.sortingTest(number_of_tests, number_of_data, ShellSort<double>::SHELL, distribution);
                 }
             }
             else {
@@ -282,15 +282,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 1) {
             if (dataType == 0) {
                 HeapSort<int> heap_sort;
-                heap_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                heap_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 1) {
                 HeapSort<float> heap_sort;
-                heap_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                heap_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 2) {
                 HeapSort<double> heap_sort;
-                heap_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                heap_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else {
                 cout << "Wrong argument for data type!" << endl;
@@ -301,15 +301,15 @@ int main(int cntArguments, char** args) {
         else if (sortingType == 2) {
             if (dataType == 0) {
                 InsertionSort<int> insertion_sort;
-                insertion_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                insertion_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 1) {
                 InsertionSort<float> insertion_sort;
-                insertion_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                insertion_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else if (dataType == 2) {
                 InsertionSort<double> insertion_sort;
-                insertion_sort.sorting_test(number_of_tests, number_of_data, distribution);
+                insertion_sort.sortingTest(number_of_tests, number_of_data, distribution);
             }
             else {
                 cout << "Wrong argument for data type!" << endl;
@@ -321,70 +321,70 @@ int main(int cntArguments, char** args) {
             if (dataType == 0) {
                 if (extraArg == 0) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::FIRST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::MIDDLE, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::RANDOM, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::RANDOM, distribution);
                 }
                 else {
                     cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<int> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::LAST, distribution);
                 }
             }
             else if (dataType == 1) {
                 if (extraArg == 0) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::FIRST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::MIDDLE, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::RANDOM, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::RANDOM, distribution);
                 }
                 else {
                     cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<float> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::LAST, distribution);
                 }
             }
             else if (dataType == 2) {
                 if (extraArg == 0) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::FIRST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::FIRST, distribution);
                 }
                 else if (extraArg == 1) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::LAST, distribution);
                 }
                 else if (extraArg == 2) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::MIDDLE, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::MIDDLE, distribution);
                 }
                 else if (extraArg == 3) {
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::RANDOM, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::RANDOM, distribution);
                 }
                 else {
                     cout << "Default argument for pivot: LAST" << endl;
                     QuickSort<double> quick_sort;
-                    quick_sort.sorting_test(number_of_tests, number_of_data, QuickSort<double>::LAST,distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::LAST,distribution);
                 }
             }
             else {

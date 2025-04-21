@@ -15,12 +15,12 @@ public:
 
     ShellSort();
     T* sort(T* data, int size, int* gaps, int gapCount);
-    void sorting_file(char* filename, gap givenGap, int distribution);
-    void sorting_test(int iterations, int size, gap givenGap, int distribution);
+    void sortingFile(char* filename, gap givenGap, int distribution);
+    void sortingTest(int iterations, int size, gap givenGap, int distribution);
 private:
-    char* generate_time_results_filename(gap givenGap, int size, int distribution);
-    char* generate_filename(gap givenGap, int size, int distribution, int nr);
-    int* generate_gaps(int size, gap givenGap, int* count);
+    char* generateTimeResultsFilename(gap givenGap, int size, int distribution);
+    char* generateFilename(gap givenGap, int size, int distribution, int nr);
+    int* generateGaps(int size, gap givenGap, int* count);
 
 };
 

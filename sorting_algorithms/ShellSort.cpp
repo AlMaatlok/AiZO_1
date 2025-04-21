@@ -33,88 +33,89 @@ T* ShellSort<T>::sort(T* data, int size, int* gaps, int gapCount) {
 
 
 template <typename T>
-void ShellSort<T>::sorting_test(int iterations, int size, gap givenGap, int distribution) {
-    char* time_file = generate_time_results_filename(givenGap, size, distribution);    //file to store time results
-    std::ofstream plik(time_file);
+void ShellSort<T>::sortingTest(int iterations, int size, gap givenGap, int distribution) {
+    char* timeFile = generateTimeResultsFilename(givenGap, size, distribution);    //file to store time results
+    ofstream plik(timeFile);
 
     int gapCount = 0;       //number of gaps
-    int* gaps = generate_gaps(size, givenGap, &gapCount);   //generating indexes of gaps
+    int* gaps = generateGaps(size, givenGap, &gapCount);   //generating gaps
 
     for (int i = 0; i < iterations; i++) {
-        NumberGenerator<T> number_generator;
+        NumberGenerator<T> numberGenerator;
         Timer timer;
         Sort<T> sort;
 
         std::cout << "Test nr " << i + 1 << std::endl;
         T* data = new T[size]; // dynimac allocation
         for (int j = 0; j < size; j++) {
-            data[j] = number_generator.generate(); // generating random data
+            data[j] = numberGenerator.generate(); // generating random data
         }
 
-        sort.sort_array_for_test2(data, size, distribution);
+        sort.sortArrayForTest2(data, size, distribution);
 
         timer.start();
-        T* sorted_data = this->sort(data, size, gaps, gapCount);   //sorting with Shell Sort
+        this->sort(data, size, gaps, gapCount);   //sorting with Shell Sort
         timer.stop();
 
-        bool is_sorted = sort.is_sorted(sorted_data, size);    //checking if sorting was successful
-        if (!is_sorted) {
+        bool isSorted = sort.isSorted(data, size);    //checking if sorting was successful
+        if (!isSorted) {
             std::cout << "Sorting failed!" << std::endl;
         } else {
-            FileHandler<T> file_handler;
+            FileHandler<T> fileHandler;
             std::cout << "Sorting successful!" << std::endl;
             int time_result = timer.result();
             plik << time_result << std::endl;     //writing time result into a file  .csv
-            //char* filename = generate_filename(givenGap, size, distribution, i);    //file for sorted values
-            //file_handler.writeData(filename, size, sorted_data);   //writing sorted data into a file .txt
-            //delete[] filename;
+
+            char* filename = generateFilename(givenGap, size, distribution, i);    //file for sorted values
+            fileHandler.writeData(filename, size, data);   //writing sorted data into a file .txt
+            delete[] filename;
         }
 
         delete[] data; //freeing memory
     }
 
-    delete[] time_file; //freeing memory
+    delete[] timeFile; //freeing memory
 }
 
 template <typename T>
-void ShellSort<T>::sorting_file(char* filename, gap givenGap, int distribution) {
-    FileHandler<T> file_handler;
+void ShellSort<T>::sortingFile(char* filename, gap givenGap, int distribution) {
+    FileHandler<T> fileHandler;
     Timer timer;
     Sort<T> sort;
 
-    int size = file_handler.numberOfValues(filename);
-    T* data = file_handler.readData(filename);
+    int size = fileHandler.numberOfValues(filename);
+    T* data = fileHandler.readData(filename);
 
-    char* time_file = generate_time_results_filename(givenGap, size, distribution);
-    std::ofstream plik(time_file);
+    char* timeFile = generateTimeResultsFilename(givenGap, size, distribution);
+    ofstream plik(timeFile);
 
     int gapCount = 0;
-    int* gaps = generate_gaps(size, givenGap, &gapCount);
+    int* gaps = generateGaps(size, givenGap, &gapCount);
 
-    sort.sort_array_for_test2(data, size, distribution);
+    sort.sortArrayForTest2(data, size, distribution);
 
     timer.start();
-    T* sorted_data = this->sort(data, size, gaps, gapCount);
+    this->sort(data, size, gaps, gapCount);
     timer.stop();
 
-    bool is_sorted = sort.is_sorted(sorted_data, size);
-    if (!is_sorted) {
+    bool isSorted = sort.isSorted(data, size);
+    if (!isSorted) {
         cout << "Sorting failed!" << std::endl;
     } else {
         cout << "Sorting successful!" << std::endl;
-        int time_result = timer.result();
-        plik << time_result << std::endl;
-        char* filename_sorted = generate_filename(givenGap, size, distribution, 1);
-        file_handler.writeData(filename_sorted, size, sorted_data);
+        int timeResult = timer.result();
+        plik << timeResult << std::endl;
+        char* filenameSorted = generateFilename(givenGap, size, distribution, 1);
+        fileHandler.writeData(filenameSorted, size, data);
     }
 
     delete[] data;
-    delete[] time_file;
+    delete[] timeFile;
     delete[] gaps;
 }
 
 template <typename T>
-char* ShellSort<T>::generate_filename(gap givenGap, int size, int distribution, int nr) {
+char* ShellSort<T>::generateFilename(gap givenGap, int size, int distribution, int nr) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -149,7 +150,7 @@ char* ShellSort<T>::generate_filename(gap givenGap, int size, int distribution, 
 }
 
 template <typename T>
-char* ShellSort<T>::generate_time_results_filename(gap givenGap, int size, int distribution) {
+char* ShellSort<T>::generateTimeResultsFilename(gap givenGap, int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -183,7 +184,7 @@ char* ShellSort<T>::generate_time_results_filename(gap givenGap, int size, int d
 }
 
 template <typename T>
-int* ShellSort<T>::generate_gaps(int size, gap givenGap, int* count) {
+int* ShellSort<T>::generateGaps(int size, gap givenGap, int* count) {
     int *gaps = nullptr;
     *count = 0;
 

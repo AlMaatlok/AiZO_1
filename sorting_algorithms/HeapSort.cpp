@@ -34,77 +34,77 @@ T* HeapSort<T>::sort(T *data, int size) {
 }
 
 template<typename T>
-void HeapSort<T>::sorting_test(int iterations, int size, int distribution) {
-    char* time_file = generate_time_results_filename(size, distribution);
-    ofstream plik(time_file);
+void HeapSort<T>::sortingTest(int iterations, int size, int distribution) {
+    char* timeFile = generateTimeResultsFilename(size, distribution);
+    ofstream plik(timeFile);
 
     for (int i = 0; i< iterations; i++) {
-        NumberGenerator<T> number_generator;
+        NumberGenerator<T> numberGenerator;
         Timer timer;
         Sort<T> sort;
 
         cout << "Test nr " << i + 1 << endl;
         T* data = new T[size];
         for(int j = 0; j < size; j++) {
-            data[j] = number_generator.generate();
+            data[j] = numberGenerator.generate();
         }
 
-        sort. sort_array_for_test2(data, size, distribution);
+        sort.sortArrayForTest2(data, size, distribution);
 
         timer.start();
-        T* sorted_data = this->sort(data, size);
+        this->sort(data, size);
         timer.stop();
-        bool is_sorted = sort.is_sorted(sorted_data, size);
+        bool isSorted = sort.isSorted(data, size);
 
-        if (!is_sorted) {
+        if (!isSorted) {
             cout << "Sorting failed!" << endl;
         }
         else {
             cout << "Sorting successful!" << endl;
-            FileHandler<T> file_handler;
-            int time_result = timer.result();
-            plik << time_result << endl;
+            FileHandler<T> fileHandler;
+            int timeResult = timer.result();
+            plik << timeResult << endl;
 
-            //char* filename = generate_filename(size, distribution, i);
-            //file_handler.writeData(filename, size, sorted_data);
-            //delete[] filename;
+            char* filename = generateFilename(size, distribution, i);
+            fileHandler.writeData(filename, size, data);
+            delete[] filename;
         }
         delete[] data;
     }
-    delete[] time_file;
+    delete[] timeFile;
 }
 template<typename T>
-void HeapSort<T>::sorting_file(char* filename, int distribution) {
-    FileHandler<T> file_handler;
+void HeapSort<T>::sortingFile(char* filename, int distribution) {
+    FileHandler<T> fileHandler;
     Timer timer;
     Sort<T> sort;
 
-    int size = file_handler.numberOfValues(filename);
-    T* data = file_handler.readData(filename);
+    int size = fileHandler.numberOfValues(filename);
+    T* data = fileHandler.readData(filename);
 
-    char* time_file = generate_time_results_filename(size, distribution);
-    ofstream plik(time_file);
+    char* timeFile = generateTimeResultsFilename(size, distribution);
+    ofstream plik(timeFile);
 
-    sort.sort_array_for_test2(data, size ,distribution);
+    sort.sortArrayForTest2(data, size ,distribution);
 
     timer.start();
-    T* sorted_data = this->sort(data, size);
+    this->sort(data, size);
     timer.stop();
-    bool is_sorted = sort.is_sorted(sorted_data, size);
-    if (!is_sorted) {
+    bool isSorted = sort.isSorted(data, size);
+    if (!isSorted) {
         cout << "Sorting failed!" << endl;
     }
     else {
         cout << "Sorting successful!" << endl;
-        int time_result = timer.result();
-        plik << time_result << endl;
+        int timeResult = timer.result();
+        plik << timeResult << endl;
 
-        char* filename_sorted = generate_filename(size, distribution, 1);
-        file_handler.writeData(filename_sorted, size, sorted_data);
-        delete[] filename_sorted;
+        char* filenameSorted = generateFilename(size, distribution, 1);
+        fileHandler.writeData(filenameSorted, size, data);
+        delete[] filenameSorted;
     }
     delete[] data;
-    delete[] time_file;
+    delete[] timeFile;
 }
 
 template<typename T>
@@ -132,7 +132,7 @@ void HeapSort<T>::heapify(T *data, int size, int i) {
 
 
 template <typename T>
-char* HeapSort<T>::generate_time_results_filename(int size, int distribution) {
+char* HeapSort<T>::generateTimeResultsFilename(int size, int distribution) {
     auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
@@ -157,7 +157,7 @@ char* HeapSort<T>::generate_time_results_filename(int size, int distribution) {
     return result;
 }
 template <typename T>
-char* HeapSort<T>::generate_filename(int size, int distribution, int nr) {
+char* HeapSort<T>::generateFilename(int size, int distribution, int nr) {
     const auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
