@@ -13,24 +13,28 @@
 using namespace std;
 using namespace chrono;
 
+//function to display help message
 void helpMode();
 
 int main(int cntArguments, char** args) {
 
-    if (cntArguments < 5) {
+    //check if the number of arguments is less than 6, then show help
+    if (cntArguments < 6) {
         helpMode();
         return -1;
     }
 
-    std::string mode = args[1];
-    int sortingType = atoi(args[2]);
-    int dataType = atoi(args[3]);
-    int distribution = atoi(args[5]);
-    int extraArg = atoi(args[6]);
+    //parse input arguments
+    std::string mode = args[1];         //mode: --file, --test or --help
+    int sortingType = atoi(args[2]);    //sorting algorithm type (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick, 4 - Drunk Student)
+    int dataType = atoi(args[3]);       //data type (0 - int, 1 - float, 2 - double)
+    int distribution = atoi(args[5]);   //initial distribution of data (-1 - descending, 0 - random, 1 - ascending, 3 - 33% sorted, 6 - 66% sorted)
+    int extraArg = atoi(args[6]);       //extra argument for specific algorithm behavior
 
+    //if mode is--file, process the file input
     if (mode == "--file") {
-        cout << "file";
-        char* filename = args[4];
+        cout << "File mode" << endl;
+        char* filename = args[4];      //input file containing the data to be sorted
 
 
         //Shell Sort
@@ -219,10 +223,12 @@ int main(int cntArguments, char** args) {
             return -2;
         }
     }
+
+    //id mode is --test, run test
     else if (mode == "--test") {
         cout << "test";
-        int number_of_tests = 100;
-        int number_of_data = atoi(args[4]);
+        int number_of_tests = 100;      //number of test to be performed
+        int number_of_data = atoi(args[4]);   //size of the array to be generated and sorted
 
         //Shell Sort
         if (sortingType == 0) {
@@ -416,6 +422,8 @@ int main(int cntArguments, char** args) {
             return -2;
         }
     }
+
+    //if mode is --help, display help
     else if (mode == "--help") {
         helpMode();
     }
@@ -427,6 +435,8 @@ int main(int cntArguments, char** args) {
 
     return 0;
 }
+
+//fun ction to display the help mode and instructions
 void helpMode() {
     cout <<     "FILE TEST MODE:" << endl <<
                 "   Usage:" << endl <<
