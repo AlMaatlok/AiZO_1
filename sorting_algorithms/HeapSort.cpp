@@ -14,6 +14,7 @@ using namespace chrono;
 template<typename T>
 HeapSort<T>::HeapSort() {}
 
+//sorting function using max-heap
 template<typename T>
 T* HeapSort<T>::sort(T *data, int size) {
     // build max-heap
@@ -27,44 +28,52 @@ T* HeapSort<T>::sort(T *data, int size) {
         data[i] = data[0];
         data[0] = temp;
 
-        // calling max heapify on the shrink heap
+        // calling max heapify on the reduced heap
         heapify(data, i, 0);
     }
     return data;
 }
 
+// function to run sorting test multiple times and save results
 template<typename T>
 void HeapSort<T>::sortingTest(int iterations, int size, int distribution) {
-    char* timeFile = generateTimeResultsFilename(size, distribution);
-    ofstream plik(timeFile);
+    char* timeFile = generateTimeResultsFilename(size, distribution); // generate name for results file
+    ofstream plik(timeFile); // open file for writing
 
-    for (int i = 0; i< iterations; i++) {
+    for (int i = 0; i < iterations; i++) {
         NumberGenerator<T> numberGenerator;
         Timer timer;
         Sort<T> sort;
 
         cout << "Test nr " << i + 1 << endl;
-        T* data = new T[size];
-        for(int j = 0; j < size; j++) {
+
+        T* data = new T[size]; // array for sorting
+
+        // generate random numbers
+        for (int j = 0; j < size; j++) {
             data[j] = numberGenerator.generate();
         }
 
+        // apply chosen distribution to input array
         sort.sortArrayForTest2(data, size, distribution);
 
+        // measure sorting time
         timer.start();
         this->sort(data, size);
         timer.stop();
+
         bool isSorted = sort.isSorted(data, size);
 
         if (!isSorted) {
             cout << "Sorting failed!" << endl;
-        }
-        else {
+        } else {
             cout << "Sorting successful!" << endl;
+
             FileHandler<T> fileHandler;
             int timeResult = timer.result();
             plik << timeResult << endl;
 
+            // save sorted array to file
             char* filename = generateFilename(size, distribution, i);
             fileHandler.writeData(filename, size, data);
             delete[] filename;
@@ -73,6 +82,7 @@ void HeapSort<T>::sortingTest(int iterations, int size, int distribution) {
     }
     delete[] timeFile;
 }
+
 template<typename T>
 void HeapSort<T>::sortingFile(char* filename, int distribution) {
     FileHandler<T> fileHandler;
@@ -109,23 +119,23 @@ void HeapSort<T>::sortingFile(char* filename, int distribution) {
 
 template<typename T>
 void HeapSort<T>::heapify(T *data, int size, int i) {
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
+    int largest = i;         //initialize largest as root
+    int l = 2 * i + 1;       //left child index
+    int r = 2 * i + 2;       //right child index
 
-    // If the left child is larger than the root
+    //if the left child is larger than the root
     if (l < size && data[l] > data[largest])
         largest = l;
 
-    // If the right child is larger
+    //if the right child is larger
     if (r < size && data[r] > data[largest])
         largest = r;
 
-    // If the root is not the largest
+    //if the root is not the largest
     if (largest != i) {
         swap(data[i], data[largest]);
 
-        // Heapifying the sub-tree repeatedly
+        //heapifying the sub-tree repeatedly
         heapify(data, size, largest);
     }
 }

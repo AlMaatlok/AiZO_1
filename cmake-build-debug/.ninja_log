@@ -54,3 +54,15 @@
 5608	6657	7668791551287008	ahhh.exe	3aee49cc6565339d
 82	6714	7668849434315045	CMakeFiles/ahhh.dir/sorting_algorithms/Sort.cpp.obj	e0de01671e4dd626
 17	7145	7668849433670851	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+91	3342	7669528716280607	CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj	d6f62942340d48ba
+106	6828	7669528716433875	CMakeFiles/ahhh.dir/utils/Timer.cpp.obj	47f7035d3930566d
+66	7741	7669528716032347	CMakeFiles/ahhh.dir/main.cpp.obj	22a4ec2ce6edc688
+14	2830	7669529374891153	CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj	d6f62942340d48ba
+18	2745	7669530341593066	CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj	d6f62942340d48ba
+17	2860	7669530597691015	CMakeFiles/ahhh.dir/utils/FileHandler.cpp.obj	d6f62942340d48ba
+42	6723	7669530597946005	CMakeFiles/ahhh.dir/sorting_algorithms/QuickSort.cpp.obj	5d7a9255b6a513aa
+64	6734	7669530598150541	CMakeFiles/ahhh.dir/sorting_algorithms/ShellSort.cpp.obj	4fd1660100279169
+32	6746	7669530597833870	CMakeFiles/ahhh.dir/sorting_algorithms/InsertionSort.cpp.obj	59bac6f817e8eac0
+52	6762	7669530598038927	CMakeFiles/ahhh.dir/sorting_algorithms/HeapSort.cpp.obj	eb57c595e618ec90
+18	5118	7669530893236727	CMakeFiles/ahhh.dir/sorting_algorithms/DrunkStudent.cpp.obj	cfcd25bc3a180549
+5120	6243	7669530944255821	ahhh.exe	3aee49cc6565339d

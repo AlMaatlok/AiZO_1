@@ -8,7 +8,7 @@ using namespace std;
 
 //function to read first line, how many values is in the file
 template <typename T>
-int FileHandler<T>::numberOfValues(string& fileName) {
+int FileHandler<T>::numberOfValues(const std::string& fileName) {
     if (ifstream file(fileName); !file.is_open()) {
         cerr << "File " << fileName << " could not be opened" << endl;
         return -1;
@@ -22,7 +22,7 @@ int FileHandler<T>::numberOfValues(string& fileName) {
 
 //function to read data from a file
 template <typename T>
-T* FileHandler<T>::readData(string& fileName) {
+T* FileHandler<T>::readData(const std::string& fileName) {
     ifstream file(fileName);
 
     if (!file.is_open()) {
@@ -52,7 +52,7 @@ T* FileHandler<T>::readData(string& fileName) {
 
 //function to write generated data to a file
 template<typename T>
-void FileHandler<T>::writeData(string &fileName, int count, const T *data) {
+void FileHandler<T>::writeData(const std::string &fileName, int count, const T *data) {
     ofstream file(fileName);
 
     if (!file.is_open()) {

@@ -23,12 +23,12 @@ T* DrunkStudent<T>::sort(T* data, int size) {
 
     // extracting elements from the heap
     for (int i = size - 1; i >= 0; i--) {
-        // moving the current root to the last element of the array.
+        //swap the current root with the last element of the array.
         T temp = data[i];
         data[i] = data[0];
         data[0] = temp;
 
-        // calling max heapify on the reduced heap
+        // calling heapify on the reduced heap
         heapify(data, i, 0);
     }
 
@@ -46,8 +46,8 @@ T* DrunkStudent<T>::sort(T* data, int size) {
 //function to run sorting test multiple times
 template<typename T>
 void DrunkStudent<T>::sortingTest(int iterations, int size, int distribution) {
-    char* timeFile = generateTimeResultsFilename(size, distribution);
-    ofstream plik(timeFile);
+    char* timeFile = generateTimeResultsFilename(size, distribution);   //genarating name for a file with results
+    ofstream plik(timeFile);                  //opening the file
 
     for (int i = 0; i< iterations; i++) {
         NumberGenerator<T> numberGenerator;
@@ -55,15 +55,22 @@ void DrunkStudent<T>::sortingTest(int iterations, int size, int distribution) {
         Sort<T> sort;
 
         cout << "Test nr " << i + 1 << endl;
-        T* data = new T[size];
+
+        T* data = new T[size];             //structure for elements to sort
+
+        //generating random numbers
         for(int j = 0; j < size; j++) {
             data[j] = numberGenerator.generate();
         }
-        sort.sortArrayForTst2(data, size, distribution);
 
+        //sorting based on an arguments for initial distribution
+        sort.sortArrayForTest2(data, size, distribution);
+
+        //sorting and checking the time it takes
         timer.start();
         this->sort(data, size);
         timer.stop();
+
         bool isSorted = sort.isSorted(data, size);
 
         if (!isSorted) {
@@ -72,9 +79,12 @@ void DrunkStudent<T>::sortingTest(int iterations, int size, int distribution) {
         else {
             cout << "Sorting successful!" << endl;
             FileHandler<T> fileHandler;
+
+            //writing time result into a file
             int timeResult = timer.result();
             plik << timeResult << endl;
 
+            //wrting sorted array into a file
             char* filename = generateFilename(size, distribution, i);
             fileHandler.writeData(filename, size, data);
             delete[] filename;
@@ -90,25 +100,34 @@ void DrunkStudent<T>::sortingFile(char* filename, int distribution) {
     Timer timer;
     Sort<T> sort;
 
+    //raeding the size of an array and data from given file
     int size = fileHandler.numberOfValues(filename);
     T* data = fileHandler.readData(filename);
 
-    char* timeFile = generateTimeResultsFilename(size, distribution);
+    char* timeFile = generateTimeResultsFilename(size, distribution);    //generating filename
     ofstream plik(timeFile);
 
+    //sorting based on an arguments for initial distribution
     sort.sortArrayForTest2(data, size, distribution);
 
+    //sorting and checking the time it takes
     timer.start();
     this->sort(data, size);
     timer.stop();
+
     bool isSorted = sort.isSorted(data, size);
+
     if (!isSorted) {
         cout << "Sorting failed!" << endl;
     }
     else {
         cout << "Sorting successful";
+
+        //writing time result into a file
         int timeResult = timer.result();
         plik << timeResult << endl;
+
+        //wrting sorted array into a file
         char* filenameSorted = generateFilename(size, distribution, 1);
         fileHandler.writeData(filenameSorted, size, data);
         delete[] filenameSorted;
@@ -117,7 +136,7 @@ void DrunkStudent<T>::sortingFile(char* filename, int distribution) {
     delete[] timeFile;
 }
 
-
+//function to generate name for a file with time results
 template <typename T>
 char* DrunkStudent<T>::generateTimeResultsFilename(int size, int distribution) {
     auto now = system_clock::now();
@@ -143,6 +162,9 @@ char* DrunkStudent<T>::generateTimeResultsFilename(int size, int distribution) {
 
     return result;
 }
+
+
+//function to generate name for file with sorted array
 template <typename T>
 char* DrunkStudent<T>::generateFilename(int size, int distribution, int nr) {
     auto now = system_clock::now();
@@ -172,23 +194,23 @@ char* DrunkStudent<T>::generateFilename(int size, int distribution, int nr) {
 
 template<typename T>
 void DrunkStudent<T>::heapify(T *data, int size, int i) {
-    int smallest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
+    int smallest = i;         //initialize largest as root
+    int l = 2 * i + 1;       //left child index
+    int r = 2 * i + 2;       //right child index
 
-    // If the left child is larger than the root
+    //if the left child is larger than the root
     if (l < size && data[l] < data[smallest])
         smallest = l;
 
-    // If the right child is larger
+    //if the right child is larger
     if (r < size && data[r] < data[smallest])
         smallest = r;
 
-    // If the root is not the largest
+    //if the root is not the largest
     if (smallest != i) {
         swap(&data[i], &data[smallest]);
 
-        // Heapifying the sub-tree repeatedly
+        //heapifying the sub-tree repeatedly
         heapify(data, size, smallest);
     }
 }

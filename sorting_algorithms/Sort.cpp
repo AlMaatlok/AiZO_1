@@ -9,7 +9,7 @@ using namespace chrono;
 template <typename T>
 Sort<T>::Sort() {
 }
-//Function to check if data is fully sorted
+//method to check if data is fully sorted
 template <typename T>
 bool Sort<T>::isSorted(T* data, int size) {
 
@@ -22,7 +22,7 @@ bool Sort<T>::isSorted(T* data, int size) {
 }
 
 
-//Function to sort an array for test number 2
+//method to sort an array for test number 2
 template<typename T>
 T* Sort<T>::sortArrayForTest2(T* data, int size, int arg) {
 
