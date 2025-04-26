@@ -1,3 +1,4 @@
+
 #include <chrono>
 #include <iostream>
 #include <fstream>
@@ -150,7 +151,7 @@ int main(int cntArguments, char** args) {
                 }
                 else {
                     QuickSort<int> quick_sort;
-                    quick_sort.sortingFile(filename, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<int>::MIDDLE, distribution);
                 }
             }
             else if (dataType == 1) {
@@ -172,7 +173,7 @@ int main(int cntArguments, char** args) {
                 }
                 else {
                     QuickSort<float> quick_sort;
-                    quick_sort.sortingFile(filename, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<float>::MIDDLE, distribution);
                 }
             }
             else if (dataType == 2) {
@@ -194,7 +195,7 @@ int main(int cntArguments, char** args) {
                 }
                 else {
                     QuickSort<double> quick_sort;
-                    quick_sort.sortingFile(filename, QuickSort<double>::LAST, distribution);
+                    quick_sort.sortingFile(filename, QuickSort<double>::MIDDLE, distribution);
                 }
             }
         }
@@ -342,9 +343,9 @@ int main(int cntArguments, char** args) {
                     quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::RANDOM, distribution);
                 }
                 else {
-                    cout << "Default argument for pivot: LAST" << endl;
+                    cout << "Default argument for pivot: MIDDLE" << endl;
                     QuickSort<int> quick_sort;
-                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<int>::MIDDLE, distribution);
                 }
             }
             else if (dataType == 1) {
@@ -365,9 +366,9 @@ int main(int cntArguments, char** args) {
                     quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::RANDOM, distribution);
                 }
                 else {
-                    cout << "Default argument for pivot: LAST" << endl;
+                    cout << "Default argument for pivot: MIDDLE" << endl;
                     QuickSort<float> quick_sort;
-                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::LAST, distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<float>::MIDDLE,  distribution);
                 }
             }
             else if (dataType == 2) {
@@ -388,9 +389,9 @@ int main(int cntArguments, char** args) {
                     quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::RANDOM, distribution);
                 }
                 else {
-                    cout << "Default argument for pivot: LAST" << endl;
+                    cout << "Default argument for pivot: MIDDLE" << endl;
                     QuickSort<double> quick_sort;
-                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::LAST,distribution);
+                    quick_sort.sortingTest(number_of_tests, number_of_data, QuickSort<double>::MIDDLE,distribution);
                 }
             }
             else {

@@ -1,7 +1,6 @@
 #include "Sort.h"
-
 #include <chrono>
-//#include <ctime>
+#include <algorithm> // For std::sort
 
 using namespace std;
 using namespace chrono;
@@ -9,10 +8,10 @@ using namespace chrono;
 template <typename T>
 Sort<T>::Sort() {
 }
-//method to check if data is fully sorted
+
+// Method to check if data is fully sorted
 template <typename T>
 bool Sort<T>::isSorted(T* data, int size) {
-
     for (int i = 1; i < size; i++) {
         if (data[i - 1] > data[i]) {
             return false;
@@ -21,55 +20,53 @@ bool Sort<T>::isSorted(T* data, int size) {
     return true;
 }
 
-
-//method to sort an array for test number 2
+// Method to sort an array for test number 2
 template<typename T>
 T* Sort<T>::sortArrayForTest2(T* data, int size, int arg) {
-
-    if (arg == 0 )
-        return data;
+    if (arg == 0) {
+        return data; // Not sorted
+    }
 
     bool ascending;
     float sizeOfSortedPart;
 
-    if (arg == -1) {
-        ascending = false;
+    switch (arg) {
+        case -1:
+            ascending = false;
         sizeOfSortedPart = 100;
-    }
+        break;
 
-    else if (arg == 1) {
-        ascending = true;
+        case 1:
+            ascending = true;
         sizeOfSortedPart = 100;
-    }
+        break;
 
-    else if (arg == 3) {
-        ascending = true;
+        case 3:
+            ascending = true;
         sizeOfSortedPart = 33;
-    }
+        break;
 
-    else if (arg == 6) {
-        ascending = true;
+        case 6:
+            ascending = true;
         sizeOfSortedPart = 66;
-    }
-    else {   //default initial sorting
-        ascending = true;
+        break;
+
+        default:
+            ascending = true;
         sizeOfSortedPart = 100;
+        break;
     }
 
-    for (int i = 0; i < sizeOfSortedPart; i++){
-        for (int j = 0; j < sizeOfSortedPart; j++){
-            if ((ascending && data[j] > data[j + 1]) || (!ascending && data[j] < data[j + 1]))
-            {
-                T temp = data[j];
-                data[j] = data[j + 1];
-                data[j + 1] = temp;
-            }
-        }
+    int sortedSize = static_cast<int>(size * (sizeOfSortedPart / 100.0));
+
+    if (ascending) {
+        sort(data, data + sortedSize);
+    } else {
+        sort(data, data + sortedSize, std::greater<T>());
     }
+
     return data;
 }
-
-
 
 template class Sort<int>;
 template class Sort<float>;

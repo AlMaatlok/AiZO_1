@@ -65,6 +65,9 @@ void DrunkStudent<T>::sortingTest(int iterations, int size, int distribution) {
 
         //sorting based on an arguments for initial distribution
         sort.sortArrayForTest2(data, size, distribution);
+        /*for (int i = 0; i < size; i++) {
+            cout << data[i] << endl;
+        }*/
 
         //sorting and checking the time it takes
         timer.start();

@@ -135,7 +135,7 @@ int QuickSort<T>::partition(T *data, int left, int right, pivotIndex pivot) {
     } else if (pivot == RANDOM) {
         pivotIndex = left + (rand() % (right - left + 1));
     } else {
-        pivotIndex = right;
+        pivotIndex = left + (right - left) / 2;
     }
 
     //move pivot to end for partitioning

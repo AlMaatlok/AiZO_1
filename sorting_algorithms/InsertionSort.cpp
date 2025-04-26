@@ -1,3 +1,4 @@
+
 #include "InsertionSort.h"
 
 #include <fstream>
@@ -60,7 +61,9 @@ void InsertionSort<T>::sortingTest(int iterations, int size, int distribution) {
 
         //optionally pre-sort or scramble data based on distribution type
         sort.sortArrayForTest2(data, size, distribution);
-
+        /*for (int i = 0 ;i<size; i++) {
+            cout<<data[i]<< endl;
+        }*/
         //time how long our sort takes
         timer.start();
         this->sort(data, size);
@@ -107,6 +110,7 @@ void InsertionSort<T>::sortingFile(char* filename, int distribution) {
 
     //shuffle or presort the data based on distribution
     sort.sortArrayForTest2(data, size, distribution);
+
 
     //time the sorting process
     timer.start();
