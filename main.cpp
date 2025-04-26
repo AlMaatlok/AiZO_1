@@ -441,7 +441,7 @@ int main(int cntArguments, char** args) {
 void helpMode() {
     cout <<     "FILE TEST MODE:" << endl <<
                 "   Usage:" << endl <<
-                "    ./YourProject --file <algorithm> <type> <inputFile> <initial distribution> [pivot/gap] " << endl <<
+                "    ./Project1 --file <algorithm> <type> <inputFile> <initial distribution> [pivot/gap] " << endl <<
                 "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick, 4 - Drunk Student)." << endl <<
                 "   <type> Data type to load (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <inputFile> Input file containing the data to be sorted." << endl <<
@@ -451,7 +451,7 @@ void helpMode() {
                 endl <<
                 "BENCHMARK MODE:" << endl <<
                 "   Usage:" << endl <<
-                "    ./YourProject --test <algorithm> <type> <size> <initial distribution> [pivot/gap]" << endl <<
+                "    ./Project1 --test <algorithm> <type> <size> <initial distribution> [pivot/gap]" << endl <<
                 "   <algorithm> Sorting algorithm to use (0 - Shell, 1 - Heap, 2 - Insertion, 3 - Quick, 4 - Drunk Student)." << endl <<
                 "   <type> Data type to generate (0 - int, 1 - float, 2 - double)." << endl <<
                 "   <size> Number of elements to generate (instance size)." << endl <<
@@ -461,16 +461,10 @@ void helpMode() {
                 endl <<
                 "HELP MODE:" << endl <<
                 "   Usage:" << endl <<
-                "    ./YourProject --help" << endl <<
+                "    ./Project1 --help" << endl <<
                 "   Displays this help message." << endl <<
                 "   Notes:" << endl <<
                 "   - The help message will also appear if no arguments are provides." << endl <<
                 "   - Ensure that either --file or --test mode id specified;" << endl <<
-                "     they are mutually exclusive." << endl <<
-                "EXAMPLE CALLS:" << endl <<
-                "    Sorting integers using Heap Sort from file and saving results:" << endl <<
-                "      ./YourProject --file 1 0 input.txt sorted_output.txt" << endl <<
-                endl <<
-                "    Running a benchmark with 1000 randomly generated floats using Quick Sort with pivot as a middle element:" << endl <<
-                "      ./YourProject --test 3 1 1000 results.txt 2";
+                "     they are mutually exclusive.";
 }
